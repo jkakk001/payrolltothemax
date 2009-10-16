@@ -70,6 +70,7 @@ public class MainProgram {
 
     /**
      * Loops through the employeeList update until false
+     * @see Modules.EmployeeList
      */
     public void EmployeeList()
     {
@@ -81,6 +82,7 @@ public class MainProgram {
 
     /**
      * Loops through the mainMenu update until false
+     * @see Modules.MainMenu
      */
     public void MainMenu()
     {
@@ -90,6 +92,7 @@ public class MainProgram {
 
     /**
      * Loops through the testing module until false, then goes back to the menu.
+     * @see Modules.Test
      */
     public void Testing()
     {
