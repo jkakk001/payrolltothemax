@@ -9,11 +9,11 @@ import java.util.Scanner;
  */
 public class MainMenu {
 
-/**
- *  Displays the main menu and directs the
- *  user to the corresponding functions.
- * @return      false to stop looping.
- */
+    /**
+     *  Displays the main menu and directs the
+     *  user to the corresponding functions.
+     * @return      false to stop looping.
+     */
     public Boolean Update()
         {
             //Menu selection variables
@@ -37,11 +37,11 @@ public class MainMenu {
                 //Create Employee Record
                 case 1:
                     //TODO
-                    break;
+                    return false;
                 //Edit/View Existing Employee Record
                 case 2:
                     //TODO
-                    break;
+                    return false;
                 //Test Reading/Writing
                 case 3:
                     Globals.currentState = Globals.State.Test;

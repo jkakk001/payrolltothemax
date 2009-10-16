@@ -26,6 +26,8 @@ public class Globals {
     public static Employee currentEmployee;
     //Self explanitory.  If true, the program exits.
     public static Boolean ExitProgram = false;
+    //Checks to see if an administrator is logged in.
+    public static Boolean userIsAdmin = false;
     //List of all employees
     public static List<Employee> Employees = new ArrayList<Employee>();
 }
