@@ -17,6 +17,7 @@ public class MainProgram {
     MainMenu mainMenu;
     Test testing;
     EmployeeList employeeList;
+    Login loginScreen;
 
     /**
      * Default constructor; Initializes the modules etc.
@@ -26,6 +27,7 @@ public class MainProgram {
         mainMenu = new MainMenu();
         testing = new Test();
         employeeList = new EmployeeList();
+        loginScreen = new Login();
     }
 
     /**
@@ -37,7 +39,7 @@ public class MainProgram {
         {
             //Show the super mega awesome welcome awesomeness
             //Load the employees into memory
-            case FirstRun: DisplayWelcome(); RetrieveEmployees(); MainMenu(); break;
+            case FirstRun: DisplayWelcome(); RetrieveEmployees(); LoginScreen(); break;
             //Display the menu
             case MainMenu: MainMenu(); break;
             case EmployeeList: EmployeeList(); break;
@@ -60,12 +62,20 @@ public class MainProgram {
     }
 
     /**
+     * Loops the login module
+     */
+    public void LoginScreen()
+    {
+        while(loginScreen.Update())
+        {}
+    }
+
+    /**
      * Loads the list of employees into memory
      */
     public void RetrieveEmployees()
     {
         Serialize.RetrieveEmployees();
-        EmployeeList();
     }
 
     /**

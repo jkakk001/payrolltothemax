@@ -45,7 +45,9 @@ public class Serialize {
             for (int i = 0; i < children.length; i++)
             {
                 //System.out.println("Path:" + children[i]);
-                Globals.Employees.add( (Employee) LoadFromXML("Database\\", children[i]));
+                //Make sure it doesn't interfere with .svn files
+                if (!children[i].endsWith(".svn"))
+                    Globals.Employees.add( (Employee) LoadFromXML("Database\\", children[i]));
             }
 
             System.out.println("Database loaded successfully. (" + children.length + " Employees Total.)");
@@ -92,7 +94,7 @@ public class Serialize {
      * Used for loading objects from XML
      * @param folderName        Path of the directory
      * @param fileName          Full filename with extension
-     * @return                  The loaded object
+     * @return                  The loaded Object
      */
     public static Object LoadFromXML(String folderName, String fileName)
     {
