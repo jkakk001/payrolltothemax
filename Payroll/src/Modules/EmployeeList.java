@@ -42,7 +42,8 @@ public class EmployeeList {
         System.out.println("(1) Sort by employee ID, (2) last name, or (3) first name?" + "\nChoice: ");
         while (choice == -1)
         {
-            choice = input.nextInt();
+            if (input.hasNextInt())
+                choice = input.nextInt();
             if (!(choice >= 1 && choice <=3))
             {
                 System.out.println("Invalid choice.  Please choose a valid one.");
@@ -62,9 +63,15 @@ public class EmployeeList {
             //Go through the list of employees and print their name and ID
             for (int i = 0; i < employeeList.size(); i++)
             {
-                System.out.println("Name: " + employeeList.get(i).getFirstName() + " "
-                                    + employeeList.get(i).getLastName() + " "
-                                    + "\t\t\tID: " + employeeList.get(i).getEmployeeID());
+                if (choice == 1)
+                    System.out.format("%s  %s %s\n", employeeList.get(i).getEmployeeID(), employeeList.get(i).getFirstName(), employeeList.get(i).getLastName());
+                else if (choice == 2)
+                    System.out.format("Name: %s, %s                  %s\n", employeeList.get(i).getLastName(), employeeList.get(i).getFirstName(), employeeList.get(i).getEmployeeID());
+                else if (choice == 3)
+                    System.out.format("Name: %s %s                  %s\n", employeeList.get(i).getFirstName(), employeeList.get(i).getLastName(), employeeList.get(i).getEmployeeID());
+//                System.out.println("Name: " + employeeList.get(i).getFirstName() + " "
+//                                    + employeeList.get(i).getLastName() + " "
+//                                    + "\t\t\tID: " + employeeList.get(i).getEmployeeID());
                 //Insert a blank line to keep it clean looking
                 if (i == employeeList.size())
                     System.out.println("");

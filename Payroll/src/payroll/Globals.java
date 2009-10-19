@@ -22,6 +22,8 @@ public class Globals {
 
     //Create a State object
     public static State currentState = State.FirstRun;
+    //The user that is logged in
+    public static Employee currentUser;
     //The current selected employee
     public static Employee currentEmployee;
     //Self explanitory.  If true, the program exits.

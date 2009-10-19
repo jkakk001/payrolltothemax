@@ -33,7 +33,11 @@ public class Serialize {
      */
     public static void RetrieveEmployees()
     {
+        //Sets the database folder
         File dir = new File("Database");
+
+        //Clears the list of employees
+        Globals.Employees.clear();
 
         //List of files in the database
         String[] children = dir.list();

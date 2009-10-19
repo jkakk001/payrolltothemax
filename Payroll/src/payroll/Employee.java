@@ -178,13 +178,13 @@ public class Employee implements Serializable
         if (Empty == false)
         {
             firstName = "John";
-            lastName = "Doe";
+            lastName = "Mills";
             address1 = "123 Birch Street";
             city = "Salt Lake City";
             state = "UT";
             zip = 84104;
             payType = 1;
-            employeeID = 1000002;
+            employeeID = 10002;
             password = "password";
             isAdmin = false;
         }
@@ -197,7 +197,7 @@ public class Employee implements Serializable
             state = "";
             zip = 0;
             payType = 0;
-            employeeID = 1000000;
+            employeeID = 10000;
             password = "";
             isAdmin = false;
         }

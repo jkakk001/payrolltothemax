@@ -25,6 +25,8 @@ public class Test {
         //Print loadedEmployee Information
         System.out.println("Loaded Employee Info: ");
         loadedEmployee.printInfo();
+
+        Serialize.RetrieveEmployees();
         return false;
     }
 
