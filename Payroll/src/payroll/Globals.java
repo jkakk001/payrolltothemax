@@ -11,17 +11,20 @@ public class Globals {
 
     //This enum lists the different types of States the app can be in.
     public static enum State
-    {
-        FirstRun,
+    { 
         Login,
         MainMenu,
+        AdminMenu,
+        CreateEmployee,
+        EditEmployee,
         EmployeeList,
+        TimeClock,
         Test,
         Quit,
     }
 
     //Create a State object
-    public static State currentState = State.FirstRun;
+    public static State currentState = State.Login;
     //The user that is logged in
     public static Employee currentUser;
     //The current selected employee
