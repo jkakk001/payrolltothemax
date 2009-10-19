@@ -18,6 +18,8 @@ public class MainProgram {
     Test testing;
     EmployeeList employeeList;
     Login loginScreen;
+    TimeClock timeClock;
+    AdminMenu adminMenu;
 
     /**
      * Default constructor; Initializes the modules etc.
@@ -28,6 +30,13 @@ public class MainProgram {
         testing = new Test();
         employeeList = new EmployeeList();
         loginScreen = new Login();
+        timeClock = new TimeClock();
+        adminMenu = new AdminMenu();
+
+        //Display the welcome message
+        DisplayWelcome();
+        //Load the employees from the database
+        Serialize.RetrieveEmployees();
     }
 
     /**
@@ -37,13 +46,17 @@ public class MainProgram {
     {
         switch (Globals.currentState)
         {
-            //Show the super mega awesome welcome awesomeness
-            //Load the employees into memory
-            case FirstRun: DisplayWelcome(); RetrieveEmployees(); LoginScreen(); break;
+            //Display the login screen
+            case Login:  LoginScreen(); break;
             //Display the menu
             case MainMenu: MainMenu(); break;
+            //Display the menu
+            case AdminMenu: AdminMenu(); break;
+            //List of Employees
             case EmployeeList: EmployeeList(); break;
+            //Runs the test module
             case Test: Testing(); break;
+            //Exit the program...
             case Quit: exitProgram(); break;
         }
     }
@@ -73,14 +86,6 @@ public class MainProgram {
     }
 
     /**
-     * Loads the list of employees into memory
-     */
-    public void RetrieveEmployees()
-    {
-        Serialize.RetrieveEmployees();
-    }
-
-    /**
      * Loops through the employeeList update until false
      * @see Modules.EmployeeList
      */
@@ -100,6 +105,29 @@ public class MainProgram {
     {
         while (mainMenu.Update())
         {}
+    }
+
+    /**
+     * Loops through the adminMenu update until false
+     * @see Modules.AdminMenu
+     */
+    public void AdminMenu()
+    {
+        while (adminMenu.Update())
+        {}
+
+    }
+
+    /**
+     * Loops through the timeClock update until false
+     * @see Modules.TimeClock
+     */
+    public void TimeClock()
+    {
+        while (timeClock.Update())
+        {}
+
+        Globals.currentState = Globals.State.MainMenu;
     }
 
     /**
