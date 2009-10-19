@@ -8,7 +8,7 @@
    <string>Salt Lake City</string> 
   </void> 
   <void property="employeeID"> 
-   <int>1000004</int> 
+   <int>10004</int> 
   </void> 
   <void property="firstName"> 
    <string>Greg</string> 

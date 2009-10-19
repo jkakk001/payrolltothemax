@@ -2,6 +2,7 @@
 package Modules;
 import payroll.*;
 import java.util.Scanner;
+import java.util.Calendar;
 
 /**
  *  This module contains the main menu of the program
@@ -19,6 +20,9 @@ public class MainMenu {
             //Menu selection variables
             int menuSelection = 1;
             Scanner in = new Scanner(System.in);
+            Calendar c = Calendar.getInstance();
+
+            System.out.format("\nCurrent time: %tT\n\n", c.getInstance());
 
             //Print the menu options to the screen
             System.out.println("Please choose an option from below: ");
@@ -28,7 +32,8 @@ public class MainMenu {
             System.out.println("4 - View Employee List");
             System.out.println("9 - Quit");
             System.out.print("Selection: ");
-            menuSelection = in.nextInt();
+            if (in.hasNextInt())
+                menuSelection = in.nextInt();
             System.out.println("");
 
             //Check the input
@@ -40,7 +45,7 @@ public class MainMenu {
                     return false;
                 //Edit/View Existing Employee Record
                 case 2:
-                    //TODO
+                    //TODO);
                     return false;
                 //Test Reading/Writing
                 case 3:
@@ -61,7 +66,7 @@ public class MainMenu {
 
             }
             //Close the input scanner
-            in.close();
+            //in.close();
 
             return true;
         }

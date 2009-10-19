@@ -68,6 +68,8 @@ public class MainProgram {
     {
         while(loginScreen.Update())
         {}
+
+        Globals.currentState = Globals.State.MainMenu;
     }
 
     /**
