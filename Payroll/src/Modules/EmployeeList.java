@@ -69,9 +69,7 @@ public class EmployeeList {
                     System.out.format("Name: %s, %s                  %s\n", employeeList.get(i).getLastName(), employeeList.get(i).getFirstName(), employeeList.get(i).getEmployeeID());
                 else if (choice == 3)
                     System.out.format("Name: %s %s                  %s\n", employeeList.get(i).getFirstName(), employeeList.get(i).getLastName(), employeeList.get(i).getEmployeeID());
-//                System.out.println("Name: " + employeeList.get(i).getFirstName() + " "
-//                                    + employeeList.get(i).getLastName() + " "
-//                                    + "\t\t\tID: " + employeeList.get(i).getEmployeeID());
+
                 //Insert a blank line to keep it clean looking
                 if (i == employeeList.size())
                     System.out.println("");

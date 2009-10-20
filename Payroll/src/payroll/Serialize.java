@@ -34,7 +34,7 @@ public class Serialize {
     public static void RetrieveEmployees()
     {
         //Sets the database folder
-        File dir = new File("Database");
+        File dir = new File("Database\\");
 
         //Clears the list of employees
         Globals.Employees.clear();
@@ -51,10 +51,10 @@ public class Serialize {
                 //System.out.println("Path:" + children[i]);
                 //Make sure it doesn't interfere with .svn files
                 if (!children[i].endsWith(".svn"))
-                    Globals.Employees.add( (Employee) LoadFromXML("Database\\", children[i]));
+                    Globals.Employees.add( (Employee) LoadFromXML("Database\\" + children[i] + "\\", "Employee.xml"));
             }
 
-            System.out.println("Database loaded successfully. (" + children.length + " Employees Total.)");
+            System.out.println("Database loaded successfully. (" + (children.length - 1) + " Employees Total.)");
         }
         else
             System.out.println("There are no employees");

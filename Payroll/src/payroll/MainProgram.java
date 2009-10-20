@@ -48,6 +48,8 @@ public class MainProgram {
         {
             //Display the login screen
             case Login:  LoginScreen(); break;
+            //Display the login screen
+            case TimeClock:  TimeClock(); break;
             //Display the menu
             case MainMenu: MainMenu(); break;
             //Display the menu
@@ -124,6 +126,7 @@ public class MainProgram {
      */
     public void TimeClock()
     {
+        timeClock.LoadTimeSheet();
         while (timeClock.Update())
         {}
 

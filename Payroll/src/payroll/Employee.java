@@ -20,78 +20,65 @@ public class Employee implements Serializable
     private Boolean isAdmin;
     private String password;
 
-    //Get the first name
+
     public String getFirstName()
     {
         return firstName;
     }
-    //Set the first name
     public void setFirstName(String value)
     {
         firstName = value;
     }
 
-    //Get the last name
     public String getLastName()
     {
         return lastName;
     }
-    //Set the last name
     public void setLastName(String value)
     {
         lastName = value;
     }
 
-    //Get the first line of the address
     public String getAddress1()
     {
         return address1;
     }
-    //Set the first line of the address
     public void setAddress1(String value)
     {
         address1 = value;
     }
 
-    //Get the second line of the address
     public String getAddress2()
     {
         return address2;
     }
-    //Set the second line of the address
     public void setAddress2(String value)
     {
         address2 = value;
     }
 
-    //Get the city
     public String getCity()
     {
         return city;
     }
-    //Set the city
     public void setCity(String value)
     {
         city = value;
     }
 
-    //Get the state
     public String getState()
     {
         return state;
     }
-    //Set the state
     public void setState(String value)
     {
         state = value;
     }
 
-    //Get the zip
     public int getZip()
     {
         return zip;
     }
-    //Set the zip
     public void setZip(int value)
     {
         zip = value;
@@ -102,12 +89,10 @@ public class Employee implements Serializable
         zip = Integer.parseInt(value);
     }
 
-    //Get the employee pay type
     public int getPayType()
     {
         return payType;
     }
-    //Set the employee pay type
     public void setPayType(int value)
     {
         payType = value;
@@ -118,12 +103,10 @@ public class Employee implements Serializable
         payType = Integer.parseInt(value);
     }
 
-    //Get the employee ID
     public int getEmployeeID()
     {
         return employeeID;
     }
-    //Set the employee ID
     public void setEmployeeID(int value)
     {
         employeeID = value;
@@ -134,12 +117,10 @@ public class Employee implements Serializable
         employeeID = Integer.parseInt(value);
     }
 
-    //Get isAdmin
     public Boolean getIsAdmin()
     {
         return isAdmin;
     }
-    //Set isAdmin
     public void setIsAdmin(Boolean value)
     {
         isAdmin = value;
@@ -150,12 +131,10 @@ public class Employee implements Serializable
         isAdmin = Boolean.parseBoolean(value);
     }
 
-    //Get the password
     public String getPassword()
     {
         return password;
     }
-    //Set the password
     public void setPassword(String value)
     {
         password = value;
