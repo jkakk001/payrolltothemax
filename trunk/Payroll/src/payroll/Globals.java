@@ -1,7 +1,9 @@
 
 package payroll;
 import java.util.*;
-
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 /**
  *  This class contains all the global variables (reusable/important for all
  *  to see) for the application.
@@ -35,4 +37,16 @@ public class Globals {
     public static Boolean userIsAdmin = false;
     //List of all employees
     public static List<Employee> Employees = new ArrayList<Employee>();
+
+    public static String getDateTime(boolean dateOnly)
+    {
+        DateFormat dateFormat;
+        if (dateOnly)
+            dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        else
+            dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
 }

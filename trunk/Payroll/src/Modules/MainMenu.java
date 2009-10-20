@@ -2,7 +2,6 @@
 package Modules;
 import payroll.*;
 import java.util.Scanner;
-import java.util.Calendar;
 
 /**
  *  This module contains the main menu of the program
@@ -21,8 +20,8 @@ public class MainMenu {
         int menuSelection = 1;
         Scanner in = new Scanner(System.in);
 
-        System.out.format("\nCurrent time: %tT\n\n", Calendar.getInstance());
-
+        System.out.println("\n" + Globals.getDateTime(false) + "\n");
+        
         //Print the menu options to the screen
         System.out.println("Please choose an option from below: ");
         System.out.println("1 - Clock");
@@ -42,12 +41,20 @@ public class MainMenu {
             case 1:
                 Globals.currentState = Globals.State.TimeClock;
                 return false;
+            //Admin menu
             case 2:
+                //Check for Admin access
                 if (Globals.currentUser.getIsAdmin())
+                {
                     Globals.currentState = Globals.State.AdminMenu;
+                    return false;
+                }
                 else
-                    System.out.println("You do not have administration access.");
-                return false;
+                {
+                    System.out.println("You do not have administrative access.");
+                    return true;
+                }
+            //Quit the program
             case 9:
                 Globals.currentState = Globals.State.Quit;
                 return false;
@@ -55,7 +62,6 @@ public class MainMenu {
             default:
                 System.out.println("Invalid Choice.");
                 break;
-
 
         }
 

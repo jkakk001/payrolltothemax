@@ -18,9 +18,9 @@ public class Test {
         Globals.currentEmployee = new Employee(false);
 
         //Save and load employee information
-        Serialize.SaveToXML("Database\\", Globals.currentEmployee.getEmployeeID() + ".xml", Globals.currentEmployee);
+        Serialize.SaveToXML("Database\\" + Globals.currentEmployee.getEmployeeID() + "\\", "Employee.xml", Globals.currentEmployee);
 
-        Employee loadedEmployee = (Employee) Serialize.LoadFromXML("Database\\", Globals.currentEmployee.getEmployeeID() + ".xml");
+        Employee loadedEmployee = (Employee) Serialize.LoadFromXML("Database\\" + Globals.currentEmployee.getEmployeeID() + "\\", "Employee.xml");
 
         //Print loadedEmployee Information
         System.out.println("Loaded Employee Info: ");

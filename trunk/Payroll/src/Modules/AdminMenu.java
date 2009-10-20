@@ -1,7 +1,6 @@
 
 package Modules;
 import payroll.*;
-import java.util.Calendar;
 import java.util.Scanner;
 
 /**
@@ -21,12 +20,12 @@ public class AdminMenu
         int menuSelection = 1;
         Scanner in = new Scanner(System.in);
 
-        System.out.format("\nCurrent time: %tT\n\n", Calendar.getInstance());
+        System.out.println("\n" + Globals.getDateTime(false) + "\n");
         System.out.println("1 - Create Employee Record");
         System.out.println("2 - Edit/View Existing Employee Record");
         System.out.println("3 - Test");
         System.out.println("4 - View Employee List");
-        System.out.println("5 - Back to Main Menu");
+        System.out.println("9 - Back to Main Menu");
         System.out.print("Selection: ");
         if (in.hasNextInt())
             menuSelection = in.nextInt();
@@ -50,7 +49,7 @@ public class AdminMenu
             case 4:
                 Globals.currentState = Globals.State.EmployeeList;
                 return false;
-            case 5:
+            case 9:
                 Globals.currentState = Globals.State.MainMenu;
                 return false;
             default:

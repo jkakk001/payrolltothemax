@@ -41,7 +41,7 @@ public class Login {
                 {
                     //If successful, welcome the user and change the program state
                     System.out.println("\n\n\n\n\n\n\n\n\n\n");
-                    System.out.println("Welcome " + emp.getFirstName() + "!");
+                    System.out.print("Welcome, " + emp.getFirstName() + "!");
                     Globals.currentUser = emp;
                     //Stop looping
                     return false;
