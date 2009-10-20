@@ -2,7 +2,7 @@
 package Modules;
 import payroll.*;
 import java.util.Scanner;
-import java.io.*;
+
 /**
  * Used for employee authentication
  * @author bross
@@ -13,7 +13,7 @@ public class Login {
      *  This module handles the user ID/password authentication.
      *  @return  false to stop looping
      */
-    public static Boolean Update()
+    public Boolean Update()
     {
         int loginID = 0;
         String loginPassword = "";
