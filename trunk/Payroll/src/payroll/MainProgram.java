@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  * The main program class.  This handles all the modules and determines what
- * to do depending on the value of Globals.currentState.
+ * to do depending on the value of Globals.currentState
  * @author bross
  */
 public class MainProgram {
