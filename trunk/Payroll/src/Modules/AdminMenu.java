@@ -26,7 +26,7 @@ public class AdminMenu
         System.out.println("3 - Test");
         System.out.println("4 - View Employee List");
         System.out.println("9 - Back to Main Menu");
-        System.out.print("Selection: ");
+        System.out.print("Choice: ");
         if (in.hasNextInt())
             menuSelection = in.nextInt();
         System.out.println("");
