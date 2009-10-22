@@ -24,13 +24,13 @@ public class Login {
         Scanner inputPass = new Scanner(System.in);
 
         //Prompt for ID number
-        System.out.println("Please enter your employee ID number: ");
+        System.out.print("Please enter your employee ID number: ");
         //Make sure it's an Integer, otherwise it throws an exception
         if (inputID.hasNextInt())
             loginID = inputID.nextInt();
 
         //Prompt for Password
-        System.out.println("Please enter your password: ");
+        System.out.print("Please enter your password: ");
         loginPassword = inputPass.nextLine();
 
         //Check each employee in the list for the login ID and password

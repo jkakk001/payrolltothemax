@@ -60,6 +60,10 @@ public class MainProgram {
             case Test: Testing(); break;
             //Exit the program...
             case Quit: exitProgram(); break;
+            default:
+                System.out.println("Internal Error (Unknown Program State)");
+                Globals.currentState = Globals.State.MainMenu;
+                break;
         }
     }
 

@@ -25,7 +25,7 @@ public class TimeClock
     public boolean Update()
     {
         //Menu selection variables
-        int menuSelection = 1;
+        int menuChoice = 1;
         Scanner in = new Scanner(System.in);
 
         System.out.println("\n" + Globals.getDateTime(false) + "\n");
@@ -47,12 +47,12 @@ public class TimeClock
         System.out.println("2 - Clock out");
         System.out.println("3 - View Pay Period");
         System.out.println("9 - Previous Menu");
-        System.out.print("Selection: ");
+        System.out.print("Choice: ");
         if (in.hasNextInt())
-            menuSelection = in.nextInt();
+            menuChoice = in.nextInt();
         System.out.println("");
 
-        switch(menuSelection)
+        switch(menuChoice)
         {
             //Clock In
             case 1:
