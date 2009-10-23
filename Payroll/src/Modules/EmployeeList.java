@@ -86,16 +86,16 @@ public class EmployeeList {
         switch(choice)
         {
             case 1:
-                //
+                Globals.currentState = Globals.State.EditEmployee;
                 return false;
             case 2:
-                //
+                Globals.currentState = Globals.State.EditEmployee;
                 return false;
             case 3:
-                //
+                Globals.currentState = Globals.State.EditEmployee;
                 return false;
             case 4:
-                //
+                Globals.currentState = Globals.State.EditEmployee;
                 return false;
             //Previous Menu
             case 9:

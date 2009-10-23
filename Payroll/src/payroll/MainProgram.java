@@ -17,6 +17,7 @@ public class MainProgram {
     MainMenu mainMenu;
     Test testing;
     EmployeeList employeeList;
+    EditEmployee editEmployee;
     Login loginScreen;
     TimeClock timeClock;
     AdminMenu adminMenu;
@@ -29,6 +30,7 @@ public class MainProgram {
         mainMenu = new MainMenu();
         testing = new Test();
         employeeList = new EmployeeList();
+        editEmployee = new EditEmployee();
         loginScreen = new Login();
         timeClock = new TimeClock();
         adminMenu = new AdminMenu();
@@ -56,6 +58,8 @@ public class MainProgram {
             case AdminMenu: AdminMenu(); break;
             //List of Employees
             case EmployeeList: EmployeeList(); break;
+            //Edit an employee record
+            case EditEmployee: EditEmployee(); break;
             //Runs the test module
             case Test: Testing(); break;
             //Exit the program...
@@ -100,7 +104,16 @@ public class MainProgram {
         while (employeeList.Update())
         {}
 
-        Globals.currentState = Globals.State.MainMenu;
+    }
+
+    /**
+     * Loops through the editEmployee update.
+     */
+    public void EditEmployee()
+    {
+        while (editEmployee.Update())
+        {}
+
     }
 
     /**
