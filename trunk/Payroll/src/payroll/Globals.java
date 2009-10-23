@@ -6,7 +6,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 /**
  *  This class contains all the global variables (reusable/important for all
- *  to see) for the application.
+ *  to see) and methods for the application.
  *  @author bross
  */
 public class Globals {
@@ -37,7 +37,13 @@ public class Globals {
     public static Boolean userIsAdmin = false;
     //List of all employees
     public static List<Employee> Employees = new ArrayList<Employee>();
-
+    
+    /**
+     * Returns the date and/or time.
+     * @param dateOnly      If true, the method returns the date without the
+     *                      time of day
+     * @return
+     */
     public static String getDateTime(boolean dateOnly)
     {
         DateFormat dateFormat;

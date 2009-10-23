@@ -49,6 +49,7 @@ public class AdminMenu
             case 4:
                 Globals.currentState = Globals.State.EmployeeList;
                 return false;
+            //Previous menu
             case 9:
                 Globals.currentState = Globals.State.MainMenu;
                 return false;

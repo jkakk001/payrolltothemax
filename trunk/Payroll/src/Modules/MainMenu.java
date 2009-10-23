@@ -25,10 +25,11 @@ public class MainMenu {
         //Print the menu options to the screen
         System.out.println("Please choose an option from below: ");
         System.out.println("1 - Clock");
+        //Shows the administrator menu option if the user has admin rights
         if (Globals.currentUser.getIsAdmin())
-            System.out.println("2 - Administration");
+            System.out.println("2 - Administrator Menu");
         System.out.println("9 - Quit");
-        System.out.print("Selection: ");
+        System.out.print("Choice: ");
         if (in.hasNextInt())
             menuSelection = in.nextInt();
         System.out.println("");
