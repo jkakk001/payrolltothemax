@@ -68,6 +68,7 @@ public class TimeClock
                 break;
             //Previous Menu
             case 9:
+                Globals.currentState = Globals.State.MainMenu;
                 return false;
             default:
                 System.out.println("Invalid choice.");

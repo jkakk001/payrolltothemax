@@ -44,6 +44,7 @@ public class Login {
                     System.out.print("Welcome, " + emp.getFirstName() + "!");
                     Globals.currentUser = emp;
                     //Stop looping
+                    Globals.currentState = Globals.State.MainMenu;
                     return false;
                 }
         }
