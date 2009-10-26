@@ -17,6 +17,8 @@ public class MainProgram {
     MainMenu mainMenu;
     Test testing;
     EmployeeList employeeList;
+    CreateEmployee createEmployee;
+    SelectEmployee selectEmployee;
     EditEmployee editEmployee;
     Login loginScreen;
     TimeClock timeClock;
@@ -30,10 +32,14 @@ public class MainProgram {
         mainMenu = new MainMenu();
         testing = new Test();
         employeeList = new EmployeeList();
+        createEmployee = new CreateEmployee();
+        selectEmployee = new SelectEmployee();
         editEmployee = new EditEmployee();
         loginScreen = new Login();
         timeClock = new TimeClock();
         adminMenu = new AdminMenu();
+
+
 
         //Display the welcome message
         DisplayWelcome();
@@ -60,6 +66,10 @@ public class MainProgram {
             case EmployeeList: EmployeeList(); break;
             //Edit an employee record
             case EditEmployee: EditEmployee(); break;
+            //Search or select an employee
+            case SelectEmployee: SelectEmployee(); break;
+            //Create a new employee
+            case CreateEmployee: CreateEmployee(); break;
             //Runs the test module
             case Test: Testing(); break;
             //Exit the program...
@@ -92,7 +102,6 @@ public class MainProgram {
         while(loginScreen.Update())
         {}
 
-        Globals.currentState = Globals.State.MainMenu;
     }
 
     /**
@@ -107,11 +116,31 @@ public class MainProgram {
     }
 
     /**
+     * Loops through the selectEmployee update.
+     */
+    public void SelectEmployee()
+    {
+        while (selectEmployee.Update())
+        {}
+
+    }
+
+    /**
      * Loops through the editEmployee update.
      */
     public void EditEmployee()
     {
         while (editEmployee.Update())
+        {}
+
+    }
+
+    /**
+     * Loops through the createEmployee update.
+     */
+    public void CreateEmployee()
+    {
+        while (createEmployee.Update())
         {}
 
     }
@@ -147,7 +176,6 @@ public class MainProgram {
         while (timeClock.Update())
         {}
 
-        Globals.currentState = Globals.State.MainMenu;
     }
 
     /**
@@ -159,7 +187,6 @@ public class MainProgram {
         while (testing.Update())
         {}
 
-        Globals.currentState = Globals.State.MainMenu;
     }
 
     /**
@@ -170,7 +197,7 @@ public class MainProgram {
         Scanner in = new Scanner(System.in);
         int confirm = 0;
 
-        System.out.print("Please reenter 9 to quit: ");
+        System.out.print("Please reenter 99 to quit: ");
         confirm = in.nextInt();
         if (confirm == 9)
             Globals.ExitProgram = true;

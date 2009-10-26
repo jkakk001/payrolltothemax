@@ -14,15 +14,16 @@ public class Globals {
     //This enum lists the different types of States the app can be in.
     public static enum State
     { 
-        Login,
-        MainMenu,
-        AdminMenu,
-        CreateEmployee,
-        EditEmployee,
-        EmployeeList,
-        TimeClock,
-        Test,
-        Quit,
+        Login,              //Log into the system
+        MainMenu,           //Main menu state
+        AdminMenu,          //Administrator Menu state
+        CreateEmployee,     //Employee creation state
+        SelectEmployee,     //Employee selection/searching (used for EditEmployee)
+        EditEmployee,       //Edit Employee Details
+        EmployeeList,       //List the employees
+        TimeClock,          //Clock in/out
+        Test,               //For Testing
+        Quit,               //Quit the program
     }
 
     //Create a State object

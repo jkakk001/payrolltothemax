@@ -8,22 +8,25 @@ import java.io.Serializable;
  */
 public class Employee implements Serializable
 {
-    private String firstName;
-    private String lastName;
-    private String address1;
-    private String address2;
-    private String city;
-    private String state;
-    private int zip;
-    private int payType;
-    private int employeeID;
-    private Boolean isAdmin;
-    private String password;
+    protected String firstName;
+    protected String lastName;
+    protected String address1;
+    protected String address2;
+    protected String city;
+    protected String state;
+    protected int zip;
+    protected int payType;
+    protected int employeeID;
+    protected Boolean isAdmin;
+    protected String password;
 
 
     public String getFirstName()
     {
-        return firstName;
+        if (firstName != null)
+            return firstName;
+        else
+            return "(Empty)";
     }
     public void setFirstName(String value)
     {
@@ -32,7 +35,10 @@ public class Employee implements Serializable
 
     public String getLastName()
     {
-        return lastName;
+        if (lastName != null)
+            return lastName;
+        else
+            return "(Empty)";
     }
     public void setLastName(String value)
     {
@@ -41,7 +47,10 @@ public class Employee implements Serializable
 
     public String getAddress1()
     {
-        return address1;
+        if (address1 != null)
+            return address1;
+        else
+            return "(Empty)";
     }
     public void setAddress1(String value)
     {
@@ -50,7 +59,10 @@ public class Employee implements Serializable
 
     public String getAddress2()
     {
-        return address2;
+        if (address2 != null)
+            return address2;
+        else
+            return "(Empty)";
     }
     public void setAddress2(String value)
     {
@@ -59,7 +71,10 @@ public class Employee implements Serializable
 
     public String getCity()
     {
-        return city;
+        if (city != null)
+            return city;
+        else
+            return "(Empty)";
     }
     public void setCity(String value)
     {
@@ -68,7 +83,10 @@ public class Employee implements Serializable
 
     public String getState()
     {
-        return state;
+        if (state != null)
+            return state;
+        else
+            return "(Empty)";
     }
     public void setState(String value)
     {

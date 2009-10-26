@@ -14,8 +14,8 @@ public class Test {
      */
     public Boolean Update()
     {
-        //Create a test employee
-        Globals.currentEmployee = new Employee(false);
+        //Create a test hourly employee
+        Globals.currentEmployee = new Employee_Hourly(false);
 
         //Save and load employee information
         Serialize.SaveToXML("Database\\" + Globals.currentEmployee.getEmployeeID() + "\\", "Employee.xml", Globals.currentEmployee);
@@ -27,6 +27,7 @@ public class Test {
         loadedEmployee.printInfo();
 
         Serialize.RetrieveEmployees();
+        Globals.currentState = Globals.State.MainMenu;
         return false;
     }
 

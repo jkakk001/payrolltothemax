@@ -39,7 +39,7 @@ public class EmployeeList {
         List<Employee> employeeList = Globals.Employees;
 
         //Ask about sorting the list
-        System.out.print("(1) Sort by employee ID, (2) last name, or (3) first name?" + "\nChoice: ");
+        System.out.print("Sort by: \n(1) Employee ID \n(2) Last name \n(3) First name" + "\nChoice: ");
         while (choice == -1)
         {
             if (input.hasNextInt())
@@ -64,11 +64,11 @@ public class EmployeeList {
             for (int i = 0; i < employeeList.size(); i++)
             {
                 if (choice == 1)
-                    System.out.format("(%s) - %s  %s %s\n", i+1, employeeList.get(i).getEmployeeID(), employeeList.get(i).getFirstName(), employeeList.get(i).getLastName());
+                    System.out.format("(%s)  - %s  %s %s\n", i+1, employeeList.get(i).getEmployeeID(), employeeList.get(i).getFirstName(), employeeList.get(i).getLastName());
                 else if (choice == 2)
-                    System.out.format("(%s) - %s, %s                  Employee ID: %s\n", i+1, employeeList.get(i).getLastName(), employeeList.get(i).getFirstName(), employeeList.get(i).getEmployeeID());
+                    System.out.format("(%s)  - %s, %s                  Employee ID: %s\n", i+1, employeeList.get(i).getLastName(), employeeList.get(i).getFirstName(), employeeList.get(i).getEmployeeID());
                 else if (choice == 3)
-                    System.out.format("(%s) - %s %s                  Employee ID: %s\n", i+1, employeeList.get(i).getFirstName(), employeeList.get(i).getLastName(), employeeList.get(i).getEmployeeID());
+                    System.out.format("(%s)  - %s %s                  Employee ID: %s\n", i+1, employeeList.get(i).getFirstName(), employeeList.get(i).getLastName(), employeeList.get(i).getEmployeeID());
 
                 //Insert a blank line to keep it clean looking
                 if (i == employeeList.size())
@@ -76,7 +76,7 @@ public class EmployeeList {
             }
         }
 
-        System.out.println("(9) - Previous Menu");
+        System.out.println("(99) - Previous Menu");
         System.out.print("Choice: ");
 
         if (input.hasNextInt())
@@ -85,25 +85,23 @@ public class EmployeeList {
 
         switch(choice)
         {
-            case 1:
-                Globals.currentState = Globals.State.EditEmployee;
-                return false;
-            case 2:
-                Globals.currentState = Globals.State.EditEmployee;
-                return false;
-            case 3:
-                Globals.currentState = Globals.State.EditEmployee;
-                return false;
-            case 4:
-                Globals.currentState = Globals.State.EditEmployee;
-                return false;
             //Previous Menu
-            case 9:
+            case 99:
                 Globals.currentState = Globals.State.AdminMenu;
                 return false;
+            //Any other number
             default:
-                System.out.println("Invalid choice.");
-                break;
+                if (choice <= employeeList.size())
+                {
+                    Globals.currentEmployee = employeeList.get(choice - 1);
+                    Globals.currentState = Globals.State.EditEmployee;
+                    return false;
+                }
+                else
+                {
+                    System.out.println("ERROR: Invalid choice.");
+                    break;
+                }
         }
 
         return true;
