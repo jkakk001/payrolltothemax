@@ -4,6 +4,10 @@ import payroll.*;
 import java.util.Scanner;
 import java.util.List;
 import java.io.*;
+import java.util.Calendar;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * This module handles the viewing of employee hours and clocking in/out etc.
@@ -102,8 +106,14 @@ public class TimeClock
      */
     private void ClockIn()
     {
-        timeSheet.timePunches.add(new TimePunch(1));
-        SaveTimeSheet();
+        //Check to make sure you haven't already clocked in
+        if (timeSheet.timePunches.get(timeSheet.timePunches.size()-1).getType() != 1)
+        {
+            timeSheet.timePunches.add(new TimePunch(1));
+            SaveTimeSheet();
+        }
+        else
+            System.out.println("*You already clocked in.*");
     }
 
     /**
@@ -111,8 +121,14 @@ public class TimeClock
      */
     private void ClockOut()
     {
-        timeSheet.timePunches.add(new TimePunch(2));
-        SaveTimeSheet();
+        //Check to make sure you haven't already clocked out
+        if (timeSheet.timePunches.get(timeSheet.timePunches.size()-1).getType() != 2)
+        {
+            timeSheet.timePunches.add(new TimePunch(2));
+            SaveTimeSheet();
+        }
+        else
+            System.out.println("*You already clocked out.*");
     }
 
     /**
@@ -134,7 +150,30 @@ public class TimeClock
      */
     private void ViewPayPeriod()
     {
-        //System.out.println("Days worked: " + payPeriod.size());
         //TODO
+        String directory = "Database\\" + Globals.currentUser.getEmployeeID() + "\\";
+        File file = new File(directory);
+        DateFormat dateFormat;
+        dateFormat = new SimpleDateFormat("yyyyMMdd");
+        Date today = new Date();
+        Date firstPayPeriodDay;
+        
+        //TODO - USE CALENDAR INSTEAD OF DATE - DATE IS DEPRECATED
+        Calendar firstPayPeriodDay1;
+
+        //Check to see which pay period it is in
+        if (today.after(new Date(today.getYear(), today.getMonth(), 1)) 
+                && today.before(new Date(today.getYear(), today.getMonth(), 15)))
+            firstPayPeriodDay = new Date(today.getYear(), today.getMonth(), 1);
+        else
+            firstPayPeriodDay = new Date(today.getYear(), today.getMonth(), 16);
+
+        //Testing stuff
+        System.out.println("Today's date: " + today);
+        System.out.println("Pay Period Starting date: " + firstPayPeriodDay);
+        System.out.println("Difference between today and first pay period day: "
+                            + (today.getDate() - firstPayPeriodDay.getDate()) );
+
+        //System.out.println("Days worked: " + payPeriod.size());
     }
 }

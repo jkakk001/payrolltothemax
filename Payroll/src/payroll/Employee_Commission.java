@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package payroll;
 
@@ -20,7 +16,7 @@ public class Employee_Commission extends Employee
     }
 
      /**
-     *  Used for creating an example or blank employee
+     *  Used for creating an example or blank commission based employee
      *  @param Empty     If false, a John Doe employee is created
      */
     public Employee_Commission(Boolean Empty)

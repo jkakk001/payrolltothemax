@@ -31,6 +31,7 @@ public class EditEmployee
             if (input.hasNextInt())
                 choice = input.nextInt();
 
+            //TODO
             switch (choice)
             {
                 //Name
