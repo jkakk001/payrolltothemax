@@ -21,6 +21,7 @@ public class SelectEmployee
      */
     public boolean Update()
     {
+        //Used for input
         Scanner inputInt = new Scanner(System.in);
         int choice = -1;
 
@@ -44,8 +45,10 @@ public class SelectEmployee
                         break;
                 //Enter Employee ID
                 case 2:
-                    EnterEmployeeID();
-                    break;
+                    if (EnterEmployeeID())
+                        return false;
+                    else
+                        break;
                 //List all employees
                 case 3:
                     Globals.currentState = Globals.State.EmployeeList;
@@ -79,15 +82,17 @@ public class SelectEmployee
      */
     boolean SearchByName()
     {
-
+        //For user input
         Scanner inputString = new Scanner(System.in);
         Scanner inputInt = new Scanner(System.in);
         String firstName = "";
         String lastName = "";
         int choice = -1;
 
+        //For holding possible matches
         List<Employee> possibleMatches = new ArrayList<Employee>();
 
+        //Prompt for input
         System.out.print("Please Enter the FIRST name of the employee: ");
         firstName = inputString.next();
         System.out.print("Please Enter the LAST name of the employee: ");
@@ -98,6 +103,7 @@ public class SelectEmployee
             if (e.getLastName().toLowerCase().contains(lastName.toLowerCase()) && e.getFirstName().toLowerCase().contains(firstName.toLowerCase()))
                 possibleMatches.add(e);
 
+        //If there's only one match
         if (possibleMatches.size() == 1)
         {
             Globals.currentEmployee = possibleMatches.get(0);
@@ -115,38 +121,66 @@ public class SelectEmployee
             if (e.getFirstName().toLowerCase().contains(firstName.toLowerCase()))
                 if (!possibleMatches.contains(e)) possibleMatches.add(e);
 
+        //If there are ANY possible matches, print out the options
         if (possibleMatches.size() > 0)
         {
             while (choice != 99)
             {
                 for (Employee e : possibleMatches)
-                    System.out.println("(" + possibleMatches.indexOf(e) + ") " +
+                    System.out.println("(" + (possibleMatches.indexOf(e)+1) + ") " +
                                     e.getFirstName() + " " + e.getLastName());
 
                 System.out.println("(99) Previous Menu");
-                System.out.println("Choice: ");
+                System.out.print("Choice: ");
                 if (inputInt.hasNextInt())
                     choice = inputInt.nextInt();
 
-                
+                if (choice <= possibleMatches.size())
+                {
+                    Globals.currentEmployee = possibleMatches.get(choice - 1);
+                    Globals.currentState = Globals.State.EditEmployee;
+                    return true;
+                }
+                else
+                    System.out.println("ERROR: Invalid choice.");
+
             }
         }
-
+        else
+        {
+                System.out.println("Could not find any possible matches.  Please try again.");
+        }
+        
         return false;
     }
 
     /**
      * This gets user input for the employee ID then checks to make sure it exists
      */
-    void EnterEmployeeID()
+    boolean EnterEmployeeID()
     {
+        //User input stuff
         Scanner inputInt = new Scanner(System.in);
         int employeeID = -1;
 
+        System.out.print("Please enter an employee ID number: ");
+        //Grabs the user's input for the employee ID
         if (inputInt.hasNextInt())
             employeeID = inputInt.nextInt();
 
-        
+        //Goes through the list of Employees
+        for (Employee e : Globals.Employees)
+        {
+            //If there is an employee with that ID number
+            if (e.getEmployeeID() == employeeID)
+            {
+                Globals.currentEmployee = e;
+                Globals.currentState = Globals.State.EditEmployee;
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

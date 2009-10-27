@@ -194,12 +194,13 @@ public class MainProgram {
      */
     public void exitProgram()
     {
+        //User input stuff
         Scanner in = new Scanner(System.in);
         int confirm = 0;
 
         System.out.print("Please reenter 99 to quit: ");
         confirm = in.nextInt();
-        if (confirm == 9)
+        if (confirm == 99)
             Globals.ExitProgram = true;
         else
             System.out.print("Returning to menu...");
