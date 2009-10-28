@@ -13,6 +13,30 @@ public class Employee_Commission extends Employee
     public Employee_Commission()
     {
         payType = 3;
+        
+        int tempID = 10000;
+        boolean okayID = false;
+        boolean isDuplicate = false;
+
+        while (!okayID)
+        {
+            isDuplicate = false;
+            for (Employee e: Globals.Employees)
+            {
+                if (e.getEmployeeID() == tempID)
+                {
+                    isDuplicate = true;
+                    break;
+                }
+            }
+
+            if (isDuplicate)
+                tempID++;
+            else
+                okayID = true;
+        }
+
+        employeeID = tempID;
     }
 
      /**
@@ -21,6 +45,10 @@ public class Employee_Commission extends Employee
      */
     public Employee_Commission(Boolean Empty)
     {
+        int tempID = 10000;
+        boolean okayID = false;
+        boolean isDuplicate = false;
+        
         if (Empty == false)
         {
             firstName = "John";
@@ -43,7 +71,26 @@ public class Employee_Commission extends Employee
             state = "";
             zip = 0;
             payType = 3;
-            employeeID = 10000;
+
+            while (!okayID)
+            {
+                isDuplicate = false;
+                for (Employee e: Globals.Employees)
+                {
+                    if (e.getEmployeeID() == tempID)
+                    {
+                        isDuplicate = true;
+                        break;
+                    }
+                }
+
+                if (isDuplicate)
+                    tempID++;
+                else
+                    okayID = true;
+            }
+
+            employeeID = tempID;
             password = "";
             isAdmin = false;
         }

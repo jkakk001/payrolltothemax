@@ -14,6 +14,8 @@ public class TimeSheet implements Serializable
     //List of todays "punches"
     public List<TimePunch> timePunches = new ArrayList<TimePunch>();
 
+    private boolean isNull;
+
     //Gets and Sets
     public String getDate()
     {
@@ -38,5 +40,7 @@ public class TimeSheet implements Serializable
     public TimeSheet()
     {
         date = date.replace("/", "");
+        isNull = true;
     }
+
 }

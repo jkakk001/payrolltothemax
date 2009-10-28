@@ -2,31 +2,28 @@
 <java version="1.6.0_16" class="java.beans.XMLDecoder"> 
  <object class="payroll.Employee_Hourly"> 
   <void property="address1"> 
-   <string>123 Birch Street</string> 
+   <string>Blah Blah</string> 
   </void> 
   <void property="city"> 
-   <string>Salt Lake City</string> 
-  </void> 
-  <void property="employeeID"> 
-   <int>10002</int> 
+   <string>Sandy</string> 
   </void> 
   <void property="firstName"> 
-   <string>John</string> 
+   <string>George</string> 
   </void> 
   <void property="isAdmin"> 
    <boolean>false</boolean> 
   </void> 
   <void property="lastName"> 
-   <string>Mills</string> 
+   <string>Washington</string> 
   </void> 
   <void property="password"> 
-   <string>password</string> 
+   <string>money</string> 
   </void> 
   <void property="state"> 
    <string>UT</string> 
   </void> 
   <void property="zip"> 
-   <int>84104</int> 
+   <int>84092</int> 
   </void> 
  </object> 
 </java> 
