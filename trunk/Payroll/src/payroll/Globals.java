@@ -1,7 +1,6 @@
 
 package payroll;
 import java.util.*;
-import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 /**

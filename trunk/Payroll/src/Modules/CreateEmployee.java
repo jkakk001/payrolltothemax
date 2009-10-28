@@ -2,6 +2,7 @@
 package Modules;
 import payroll.*;
 import java.util.Scanner;
+import java.io.File;
 
 /**
  * This module is used for creating new employees
@@ -19,6 +20,7 @@ public class CreateEmployee
         int choice = -1;
 
         //Menu
+        System.out.println("\n**CREATE NEW EMPLOYEE MENU**\n");
         PrintMenuChoices();
 
         if (input.hasNextInt())
@@ -47,28 +49,53 @@ public class CreateEmployee
                 return true;
         }
 
-        Globals.currentState = Globals.State.AdminMenu;
         return false;
     }
 
+    /**
+     * Creates a new hourly-based employee
+     */
     void CreateHourlyEmployee()
     {
-        //TODO
+        Globals.currentEmployee = new Employee_Hourly(true);
+        CreateDataFiles();
+        Globals.currentState = Globals.State.EditEmployee;
     }
 
+    /**
+     * Creates a new salary-based employee
+     */
     void CreateSalaryEmployee()
     {
-        //TODO
+        Globals.currentEmployee = new Employee_Salary(true);
+        CreateDataFiles();
+        Globals.currentState = Globals.State.EditEmployee;
     }
 
+    /**
+     * Creates a new commission-based employee
+     */
     void CreateCommissionEmployee()
     {
-        //TODO
+        Globals.currentEmployee = new Employee_Commission(true);
+        CreateDataFiles();
+        Globals.currentState = Globals.State.EditEmployee;
     }
 
+    /**
+     * Creates the data files for the new employee
+     */
+    void CreateDataFiles()
+    {
+        String directory = "Database\\" + Globals.currentEmployee.getEmployeeID() + "\\";
+        Serialize.SaveToXML(directory, "Employee.xml", Globals.currentEmployee);
+    }
+
+    /**
+     * Prints the menu choices
+     */
     void PrintMenuChoices()
     {
-        System.out.println("\n**Create New Employee Menu**");
         System.out.println("Please select employee type: ");
         System.out.println("(1)  Hourly \n(2)  Salary \n(3)  Commission" +
                          "\n(99) Previous Menu");

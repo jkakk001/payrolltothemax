@@ -20,7 +20,8 @@ public class MainMenu {
         int menuSelection = 1;
         Scanner in = new Scanner(System.in);
 
-        System.out.println("\n" + Globals.getDateTime(false) + "\n");
+        System.out.println("\nCurrent Time: " + Globals.getDateTime(false) + "\n");
+        System.out.println("**MAIN MENU**\n");
         
         //Print the menu options to the screen
         System.out.println("Please choose an option from below: ");

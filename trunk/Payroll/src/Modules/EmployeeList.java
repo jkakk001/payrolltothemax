@@ -39,7 +39,7 @@ public class EmployeeList {
         List<Employee> employeeList = Globals.Employees;
 
         //Ask about sorting the list
-        System.out.print("Sort by: \n(1) Employee ID \n(2) Last name \n(3) First name" + "\nChoice: ");
+        System.out.print("\nSort by: \n(1) Employee ID \n(2) Last name \n(3) First name" + "\nChoice: ");
         while (choice == -1)
         {
             if (input.hasNextInt())

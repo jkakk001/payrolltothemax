@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package Modules;
 import payroll.*;
@@ -25,13 +21,14 @@ public class SelectEmployee
         Scanner inputInt = new Scanner(System.in);
         int choice = -1;
 
-        System.out.println("**Employee Selection**");
+        System.out.println("**EMPLOYEE SELECTION MENU**\n");
 
-        while (choice != 9)
+        while (choice != 99)
         {
             //Print the menu
             PrintMenuChoices();
 
+            //Make sure the input is an integer to prevent exceptions
             if (inputInt.hasNextInt())
                 choice = inputInt.nextInt();
 
@@ -148,7 +145,7 @@ public class SelectEmployee
         }
         else
         {
-                System.out.println("Could not find any possible matches.  Please try again.");
+                System.out.println("\nCould not find any possible matches.  Please try again.\n");
         }
         
         return false;
@@ -156,6 +153,7 @@ public class SelectEmployee
 
     /**
      * This gets user input for the employee ID then checks to make sure it exists
+     * @return      true if a match was found
      */
     boolean EnterEmployeeID()
     {
@@ -180,6 +178,7 @@ public class SelectEmployee
             }
         }
 
+        System.out.println("\nThere are no employees with that ID in the database.\n");
         return false;
     }
 

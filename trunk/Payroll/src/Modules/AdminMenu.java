@@ -20,13 +20,12 @@ public class AdminMenu
         int menuSelection = 1;
         Scanner in = new Scanner(System.in);
 
-        System.out.println("\n" + Globals.getDateTime(false) + "\n");
-        System.out.println("(1)  - Create Employee Record");
-        System.out.println("(2)  - Edit/View Existing Employee Record");
-        System.out.println("(3)  - Test");
-        System.out.println("(4)  - View Employee List");
-        System.out.println("(99) - Back to Main Menu");
+        System.out.println("\n**ADMINISTRATOR MENU**");
+
+        PrintMenuChoices();
         System.out.print("Choice: ");
+
+        //Make sure the input is an integer to prevent exceptions
         if (in.hasNextInt())
             menuSelection = in.nextInt();
         System.out.println("");
@@ -41,12 +40,8 @@ public class AdminMenu
             case 2:
                 Globals.currentState = Globals.State.SelectEmployee;
                 return false;
-            //Test Reading/Writing
-            case 3:
-                Globals.currentState = Globals.State.Test;
-                return false;
             //Print the employee list to the screen
-            case 4:
+            case 3:
                 Globals.currentState = Globals.State.EmployeeList;
                 return false;
             //Previous menu
@@ -60,6 +55,18 @@ public class AdminMenu
             
         //Keep looping
         return true;
+    }
+
+    /**
+     * Prints the menu choices
+     */
+    void PrintMenuChoices()
+    {
+        System.out.println("\n" + Globals.getDateTime(false) + "\n");
+        System.out.println("(1)  - Create Employee Record");
+        System.out.println("(2)  - Edit/View Existing Employee Record");
+        System.out.println("(3)  - View Employee List");
+        System.out.println("(99) - Back to Main Menu");
     }
 
 }

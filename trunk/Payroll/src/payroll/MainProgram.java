@@ -39,8 +39,6 @@ public class MainProgram {
         timeClock = new TimeClock();
         adminMenu = new AdminMenu();
 
-
-
         //Display the welcome message
         DisplayWelcome();
         //Load the employees from the database

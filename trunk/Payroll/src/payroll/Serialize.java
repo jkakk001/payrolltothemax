@@ -23,6 +23,8 @@ public class Serialize {
      */
     public static void SaveSettings()
     {
+        //TODO - Add settings menu to program and save them here
+        
         //Set the settings directory
         File dir = new File("Settings");
     }
@@ -69,7 +71,8 @@ public class Serialize {
     public static void SaveToXML(String folderName, String fileName, Object object)
     {
         //Check to see if the directory exists.  If not, create it.
-        if (!new File(folderName).exists()){
+        if (!new File(folderName).exists())
+        {
             System.out.println("Folder did not exist. Creating one now...");
             new File(folderName).mkdir();
         }
