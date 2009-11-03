@@ -57,7 +57,7 @@ public class CreateEmployee
      */
     void CreateHourlyEmployee()
     {
-        Globals.currentEmployee = new Employee_Hourly(true);
+        Globals.currentEmployee = new Employee(true);
         CreateDataFiles();
         Globals.currentState = Globals.State.EditEmployee;
     }
@@ -89,6 +89,11 @@ public class CreateEmployee
     {
         String directory = "Database\\" + Globals.currentEmployee.getEmployeeID() + "\\";
         Serialize.SaveToXML(directory, "Employee.xml", Globals.currentEmployee);
+
+        Employee temp = (Employee) Serialize.LoadFromXML(directory, "Employee.xml");
+        System.out.println("CURRENT ID: " + Globals.currentEmployee.getEmployeeID());
+        System.out.println("TEMP CURRENT ID: " + temp.getEmployeeID());
+        System.out.println("TEMP CURRENT ID: " + temp.getClass());
     }
 
     /**
