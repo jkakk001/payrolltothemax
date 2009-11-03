@@ -20,7 +20,6 @@ public class Employee implements Serializable
     protected Boolean isAdmin;
     protected String password;
 
-
     public String getFirstName()
     {
         if (firstName != null)
@@ -101,11 +100,11 @@ public class Employee implements Serializable
     {
         zip = value;
     }
-    //Just in case a string is passed to it
-    public void setZip(String value)
-    {
-        zip = Integer.parseInt(value);
-    }
+//    //Just in case a string is passed to it
+//    public void setZip(String value)
+//    {
+//        zip = Integer.parseInt(value);
+//    }
 
     public int getPayType()
     {
@@ -115,11 +114,11 @@ public class Employee implements Serializable
     {
         payType = value;
     }
-    //Just in case a string is passed to it
-    public void setPayType(String value)
-    {
-        payType = Integer.parseInt(value);
-    }
+//    //Just in case a string is passed to it
+//    public void setPayType(String value)
+//    {
+//        payType = Integer.parseInt(value);
+//    }
 
     public int getEmployeeID()
     {
@@ -129,11 +128,11 @@ public class Employee implements Serializable
     {
         employeeID = value;
     }
-    //Just in case a string is passed to it
-    public void setEmployeeID(String value)
-    {
-        employeeID = Integer.parseInt(value);
-    }
+//    //Just in case a string is passed to it
+//    public void setEmployeeID(String value)
+//    {
+//        employeeID = Integer.parseInt(value);
+//    }
 
     public Boolean getIsAdmin()
     {
@@ -143,11 +142,11 @@ public class Employee implements Serializable
     {
         isAdmin = value;
     }
-    //Just in case a string is passed to it
-    public void setIsAdmin(String value)
-    {
-        isAdmin = Boolean.parseBoolean(value);
-    }
+//    //Just in case a string is passed to it
+//    public void setIsAdmin(String value)
+//    {
+//        isAdmin = Boolean.parseBoolean(value);
+//    }
 
     public String getPassword()
     {
@@ -170,32 +169,55 @@ public class Employee implements Serializable
      *  Used for creating an example or blank employee
      *  @param Empty     If false, a John Doe employee is created
      */
-    public Employee(Boolean Empty)
+    public Employee(boolean Empty)
     {
+        int tempID = 10000;
+        boolean okayID = false;
+        boolean isDuplicate = false;
+
+        //Find the next available employee ID
+        while (!okayID)
+        {
+            isDuplicate = false;
+            for (Employee e: Globals.Employees)
+            {
+                if (e.getEmployeeID() == tempID)
+                {
+                    isDuplicate = true;
+                    break;
+                }
+            }
+
+            if (isDuplicate)
+                tempID++;
+            else
+                okayID = true;
+        }
+
+        employeeID = tempID;
+
         if (Empty == false)
         {
             firstName = "John";
             lastName = "Mills";
             address1 = "123 Birch Street";
+            address2 = "(Empty)";
             city = "Salt Lake City";
             state = "UT";
             zip = 84104;
-            payType = 1;
-            employeeID = 10002;
             password = "password";
             isAdmin = false;
         }
         else
         {
-            firstName = "";
-            lastName = "";
-            address1 = "";
-            city = "";
-            state = "";
+            firstName = "(Empty)";
+            lastName = "(Empty)";
+            address1 = "(Empty)";
+            address2 = "(Empty)";
+            city = "(Empty)";
+            state = "(Empty)";
             zip = 0;
-            payType = 0;
-            employeeID = 10000;
-            password = "";
+            password = "(Empty)";
             isAdmin = false;
         }
     }
