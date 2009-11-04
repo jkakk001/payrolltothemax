@@ -2,7 +2,6 @@
 package Modules;
 import payroll.*;
 import java.util.Scanner;
-import java.io.File;
 
 /**
  * This module is used for creating new employees
@@ -57,7 +56,7 @@ public class CreateEmployee
      */
     void CreateHourlyEmployee()
     {
-        Globals.currentEmployee = new Employee(true);
+        Globals.currentEmployee = new Employee_Hourly(true);
         CreateDataFiles();
         Globals.currentState = Globals.State.EditEmployee;
     }

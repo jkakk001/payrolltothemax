@@ -206,6 +206,7 @@ public class Employee implements Serializable
             state = "UT";
             zip = 84104;
             password = "password";
+            payType = 0;
             isAdmin = false;
         }
         else
@@ -217,7 +218,8 @@ public class Employee implements Serializable
             city = "(Empty)";
             state = "(Empty)";
             zip = 0;
-            password = "(Empty)";
+            password = "password";
+            payType = 0;
             isAdmin = false;
         }
     }
