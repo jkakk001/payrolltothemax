@@ -23,7 +23,7 @@ public class Employee_Salary extends Employee
     {
         super(Empty);
 
-        payType = 2;
+        rate = 600.00f;
     }
 
 }

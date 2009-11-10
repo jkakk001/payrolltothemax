@@ -22,6 +22,9 @@
   <void property="password"> 
    <string>monkey</string> 
   </void> 
+  <void property="rate"> 
+   <float>15.0</float> 
+  </void> 
   <void property="state"> 
    <string>UT</string> 
   </void> 

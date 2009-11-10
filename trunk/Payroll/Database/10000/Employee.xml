@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <java version="1.6.0_16" class="java.beans.XMLDecoder"> 
  <object class="payroll.Employee_Hourly"> 
+  <void property="address1"> 
+   <string>400 Yellow Brick Road</string> 
+  </void> 
+  <void property="city"> 
+   <string>Oz</string> 
+  </void> 
   <void property="employeeID"> 
    <int>10000</int> 
   </void> 
@@ -16,8 +22,14 @@
   <void property="password"> 
    <string>password</string> 
   </void> 
-  <void property="payType"> 
-   <int>1</int> 
+  <void property="rate"> 
+   <float>40.0</float> 
+  </void> 
+  <void property="state"> 
+   <string>Oz</string> 
+  </void> 
+  <void property="zip"> 
+   <int>99999</int> 
   </void> 
  </object> 
 </java> 

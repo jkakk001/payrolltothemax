@@ -27,7 +27,7 @@ public class TimeClock
         int menuChoice = 1;
         Scanner in = new Scanner(System.in);
 
-        System.out.println("\nCurrent Time: " + Globals.getDateTime(false) + "\n");
+        System.out.println(Globals.getDateTime(false) + "\n");
 
         System.out.println("**TIME CLOCK**\n");
         
@@ -179,9 +179,14 @@ public class TimeClock
 
         //Testing stuff
         System.out.println("Today's date: " + Globals.getDateTime(true));
-        System.out.println("Pay Period Starting date: " + firstPayPeriodDate.get(Calendar.YEAR)
-                            + "/" + (firstPayPeriodDate.get(Calendar.MONTH)+1)
-                            + "/" + firstPayPeriodDate.get(Calendar.DATE));
+        System.out.print("Pay Period Starting date: " + firstPayPeriodDate.get(Calendar.YEAR) + "/");
+        if ( (firstPayPeriodDate.get(Calendar.MONTH)+1) < 10)
+            System.out.print("0");
+        System.out.print( (firstPayPeriodDate.get(Calendar.MONTH)+1) + "/");
+        if ( (firstPayPeriodDate.get(Calendar.DATE)) < 10)
+            System.out.print("0");
+        System.out.println(firstPayPeriodDate.get(Calendar.DATE));
+        
         //System.out.println("Difference between today and first pay period day: "
         //                  + (Calendar.getInstance().get(Calendar.DAY_OF_MONTH) - firstPayPeriodDay) );
 
@@ -242,7 +247,7 @@ public class TimeClock
         }
 
         //Wait for user input
-        System.out.println("Press enter to continue...");
+        System.out.print("Press enter to continue...");
         Scanner sc = new Scanner(System.in);
         sc.nextLine();
     }

@@ -8,17 +8,17 @@ import java.io.Serializable;
  */
 public class Employee implements Serializable
 {
-    protected String firstName;
-    protected String lastName;
-    protected String address1;
-    protected String address2;
-    protected String city;
-    protected String state;
-    protected int zip;
-    protected int payType;
-    protected int employeeID;
-    protected Boolean isAdmin;
-    protected String password;
+    protected String firstName;     //First Name
+    protected String lastName;      //Last Name
+    protected String address1;      //Address
+    protected String address2;      //Address (Second Line)
+    protected String city;          //City
+    protected String state;         //State
+    protected int zip;              //Zip Code
+    protected int employeeID;       //Employee ID Number
+    protected float rate;           //Hourly/Salary/Commission Rate
+    protected Boolean isAdmin;      //True if the employee has Admin rights
+    protected String password;      //Password
 
     public String getFirstName()
     {
@@ -100,25 +100,6 @@ public class Employee implements Serializable
     {
         zip = value;
     }
-//    //Just in case a string is passed to it
-//    public void setZip(String value)
-//    {
-//        zip = Integer.parseInt(value);
-//    }
-
-    public int getPayType()
-    {
-        return payType;
-    }
-    public void setPayType(int value)
-    {
-        payType = value;
-    }
-//    //Just in case a string is passed to it
-//    public void setPayType(String value)
-//    {
-//        payType = Integer.parseInt(value);
-//    }
 
     public int getEmployeeID()
     {
@@ -128,11 +109,6 @@ public class Employee implements Serializable
     {
         employeeID = value;
     }
-//    //Just in case a string is passed to it
-//    public void setEmployeeID(String value)
-//    {
-//        employeeID = Integer.parseInt(value);
-//    }
 
     public Boolean getIsAdmin()
     {
@@ -142,11 +118,15 @@ public class Employee implements Serializable
     {
         isAdmin = value;
     }
-//    //Just in case a string is passed to it
-//    public void setIsAdmin(String value)
-//    {
-//        isAdmin = Boolean.parseBoolean(value);
-//    }
+
+    public float getRate()
+    {
+        return rate;
+    }
+    public void setRate(float value)
+    {
+        rate = value;
+    }
 
     public String getPassword()
     {
@@ -172,8 +152,8 @@ public class Employee implements Serializable
     public Employee(boolean Empty)
     {
         int tempID = 10000;
-        boolean okayID = false;
-        boolean isDuplicate = false;
+        boolean okayID = false;         //True if the ID we have is available
+        boolean isDuplicate = false;    //True if we find a duplicate ID
 
         //Find the next available employee ID
         while (!okayID)
@@ -206,8 +186,8 @@ public class Employee implements Serializable
             state = "UT";
             zip = 84104;
             password = "password";
-            payType = 0;
             isAdmin = false;
+            rate = 8.00f;
         }
         else
         {
@@ -219,8 +199,8 @@ public class Employee implements Serializable
             state = "(Empty)";
             zip = 0;
             password = "password";
-            payType = 0;
             isAdmin = false;
+            rate = 8.00f;
         }
     }
 
@@ -241,7 +221,16 @@ public class Employee implements Serializable
             System.out.print(state + " ");
 
         System.out.println(zip + "\n");
-        System.out.println("Pay Type: " + payType);
+        
+        System.out.print("Pay Type: ");
+        if (this instanceof Employee_Hourly)
+            System.out.println("Hourly");
+        else if (this instanceof Employee_Salary)
+            System.out.println("Salary");
+        else if (this instanceof Employee_Commission)
+            System.out.println("Commission");
+        System.out.printf("Rate: $%1.2f\n", rate);
+
         System.out.println("Employee ID: " + employeeID + "\n");
     }
 

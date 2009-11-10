@@ -22,6 +22,7 @@ public class EditEmployee
         //Load the current employee's data from xml
         temporaryEmployee = (Employee) Serialize.LoadFromXML("Database\\" + Globals.currentEmployee.getEmployeeID() + "\\", "Employee.xml");
 
+        System.out.println("\n " + Globals.getDateTime(false) + "\n");
         System.out.println("**EDIT EMPLOYEE MENU**");
         //temporaryEmployee.printInfo();
 
@@ -95,6 +96,15 @@ public class EditEmployee
 
                     madeChanges = true;
                     break;
+                //Rate
+                case 9:
+                    System.out.print("Rate: ");
+                    if (temporaryEmployee instanceof Employee_Hourly || temporaryEmployee instanceof Employee_Salary)
+                        temporaryEmployee.setRate( Float.parseFloat((String)GetReplacement()) );
+                    else if (temporaryEmployee instanceof Employee_Commission)
+                        temporaryEmployee.setRate( Float.parseFloat((String)GetReplacement()) / 100 );
+                    madeChanges = true;
+                    break;
                 //Previous Menu
                 case 99:
                     Globals.currentState = Globals.State.AdminMenu;
@@ -146,6 +156,11 @@ public class EditEmployee
         System.out.println("(6)  Zip:       \t" + temporaryEmployee.getZip());
         System.out.println("(7)  Password:  \t" + temporaryEmployee.getPassword());
         System.out.println("(8)  Administrator:     " + temporaryEmployee.getIsAdmin());
+        if (temporaryEmployee instanceof Employee_Hourly || temporaryEmployee instanceof Employee_Salary)
+            System.out.printf( "(9)  Rate:      \t$%1.2f\n", temporaryEmployee.getRate());
+        else if (temporaryEmployee instanceof Employee_Commission)
+            System.out.printf( "(9)  Rate:      \t%%%1.2f\n", temporaryEmployee.getRate() * 100);
+        
 
         System.out.println("(99) Back");
     }
