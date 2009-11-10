@@ -22,7 +22,7 @@ public class Employee_Commission extends Employee
     public Employee_Commission(boolean Empty)
     {
         super(Empty);
-        
-        payType = 3;
+
+        rate = .06f;
     }
 }

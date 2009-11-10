@@ -19,8 +19,9 @@ public class AdminMenu
         //Menu selection variables
         int menuSelection = 1;
         Scanner in = new Scanner(System.in);
-
-        System.out.println("\n**ADMINISTRATOR MENU**");
+        
+        System.out.println(" " + Globals.getDateTime(false) + "\n");
+        System.out.println("**ADMINISTRATOR MENU**\n");
 
         PrintMenuChoices();
         System.out.print("Choice: ");
@@ -62,7 +63,6 @@ public class AdminMenu
      */
     void PrintMenuChoices()
     {
-        System.out.println("\n" + Globals.getDateTime(false) + "\n");
         System.out.println("(1)  - Create Employee Record");
         System.out.println("(2)  - Edit/View Existing Employee Record");
         System.out.println("(3)  - View Employee List");

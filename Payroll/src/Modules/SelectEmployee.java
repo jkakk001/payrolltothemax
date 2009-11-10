@@ -20,7 +20,8 @@ public class SelectEmployee
         //Used for input
         Scanner inputInt = new Scanner(System.in);
         int choice = -1;
-
+        
+        System.out.println("    " + Globals.getDateTime(false) + "\n");
         System.out.println("**EMPLOYEE SELECTION MENU**\n");
 
         while (choice != 99)

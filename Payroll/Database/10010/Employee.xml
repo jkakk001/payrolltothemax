@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <java version="1.6.0_16" class="java.beans.XMLDecoder"> 
- <object class="payroll.Employee_Salary"> 
+ <object class="payroll.Employee_Commission"> 
   <void property="address1"> 
-   <string>Nowhere</string> 
+   <string>78 Remington Ave.</string> 
   </void> 
   <void property="employeeID"> 
-   <int>10001</int> 
+   <int>10010</int> 
   </void> 
   <void property="firstName"> 
-   <string>Bob</string> 
+   <string>Jenny</string> 
   </void> 
   <void property="isAdmin"> 
    <boolean>false</boolean> 
   </void> 
   <void property="lastName"> 
-   <string>Mower</string> 
+   <string>Baker</string> 
   </void> 
   <void property="password"> 
    <string>password</string> 
+  </void> 
+  <void property="rate"> 
+   <float>0.09</float> 
+  </void> 
+  <void property="zip"> 
+   <int>12345</int> 
   </void> 
  </object> 
 </java> 

@@ -24,7 +24,7 @@ public class Employee_Hourly extends Employee
     {
         super(Empty);
 
-        payType = 1;
+        rate = 8.00f;
     }
 
 }

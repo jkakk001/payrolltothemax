@@ -79,14 +79,13 @@ public class Serialize {
 
         try
         {
-            //Create the output streams
+            //Create the output stream, give it the path and file name
             FileOutputStream fos = new FileOutputStream(folderName + fileName);
-            BufferedOutputStream bos = new BufferedOutputStream(fos);
 
             //Create an encoder
-            XMLEncoder encoder = new XMLEncoder(bos);
+            XMLEncoder encoder = new XMLEncoder(fos);
 
-            //Write the object
+            //Write the object to the file
             encoder.writeObject(object);
             encoder.close();
             System.out.println("Saved Successfully.");
@@ -120,13 +119,13 @@ public class Serialize {
 
         try
         {
-            //Create the input streams
+            //Create the input stream
             FileInputStream fis = new FileInputStream(folderName + fileName);
 
             //Create an XML Decoder
             XMLDecoder decoder = new XMLDecoder(fis);
 
-            //Read the object to a file
+            //Read the object from the file
             returnValue = decoder.readObject();
             decoder.close();
         }
