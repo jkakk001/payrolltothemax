@@ -94,6 +94,7 @@ public class MainProgram {
 
     /**
      * Loops the login module
+     * @see Modules.Login
      */
     public void LoginScreen()
     {
@@ -115,6 +116,7 @@ public class MainProgram {
 
     /**
      * Loops through the selectEmployee update.
+     * @see Modules.SelectEmployee
      */
     public void SelectEmployee()
     {
@@ -125,6 +127,7 @@ public class MainProgram {
 
     /**
      * Loops through the editEmployee update.
+     * @see Modules.EditEmployee
      */
     public void EditEmployee()
     {
@@ -135,6 +138,7 @@ public class MainProgram {
 
     /**
      * Loops through the createEmployee update.
+     * @see Modules.CreateEmployee
      */
     public void CreateEmployee()
     {

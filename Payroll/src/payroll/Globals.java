@@ -13,16 +13,16 @@ public class Globals {
     //This enum lists the different types of States the app can be in.
     public static enum State
     { 
-        Login,              //Log into the system
-        MainMenu,           //Main menu state
-        AdminMenu,          //Administrator Menu state
-        CreateEmployee,     //Employee creation state
-        SelectEmployee,     //Employee selection/searching (used for EditEmployee)
-        EditEmployee,       //Edit Employee Details
-        EmployeeList,       //List the employees
-        TimeClock,          //Clock in/out
-        Test,               //For Testing
-        Quit,               //Quit the program
+        Login,              //  Log into the system
+        MainMenu,           //  Main menu state
+        AdminMenu,          //  Administrator Menu state
+        CreateEmployee,     //  Employee creation state
+        SelectEmployee,     //  Employee selection/searching (used for EditEmployee)
+        EditEmployee,       //  Edit Employee Details
+        EmployeeList,       //  List the employees
+        TimeClock,          //  Clock in/out
+        Test,               //  For Testing
+        Quit,               //  Quit the program
     }
 
     //Create a State object
@@ -37,12 +37,22 @@ public class Globals {
     public static Boolean userIsAdmin = false;
     //List of all employees
     public static List<Employee> Employees = new ArrayList<Employee>();
-    
+
+    //Tax Variables - The default values are typical rates and
+    //they are there for the sake of the programming class.
+    public static float federalTaxRate;         //  Default: .25
+    public static float stateTaxRate;           //  Default: .13 of Federal
+    public static float healthInsuranceRate;    //  Default: .07
+    public static float lifeInsuranceRate;      //  Default: .003
+    //Calculated after pre-tax stuff, from the remaining amount
+    public static float socialSecurityRate;     //  Default: .062   (calculated up to $106,800/yr incomes)
+    public static float medicareRate;           //  Default: .0145
+
     /**
      * Returns the date and/or time.
      * @param dateOnly      If true, the method returns the date without the
      *                      time of day
-     * @return
+     * @return              The date in a String format
      */
     public static String getDateTime(boolean dateOnly)
     {

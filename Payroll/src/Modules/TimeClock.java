@@ -38,7 +38,7 @@ public class TimeClock
         {
             System.out.println("Today's Time Sheet: ");
             for (TimePunch tP : timeSheet.timePunches)
-                tP.printInfo();
+                tP.toString();
         }
 
         //Print the menu
@@ -243,7 +243,7 @@ public class TimeClock
         for (TimeSheet t: payPeriod)
         {
             for (TimePunch tP: t.timePunches)
-                tP.printInfo();
+                System.out.println(tP.toString());
         }
 
         //Wait for user input

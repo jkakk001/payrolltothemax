@@ -20,6 +20,7 @@ public class Employee implements Serializable
     protected Boolean isAdmin;      //True if the employee has Admin rights
     protected String password;      //Password
 
+    //Gets and Sets
     public String getFirstName()
     {
         if (firstName != null)
@@ -223,6 +224,8 @@ public class Employee implements Serializable
         System.out.println(zip + "\n");
         
         System.out.print("Pay Type: ");
+        
+        //Checks the class and prints the associated pay type.
         if (this instanceof Employee_Hourly)
             System.out.println("Hourly");
         else if (this instanceof Employee_Salary)

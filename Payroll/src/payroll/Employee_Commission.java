@@ -23,6 +23,7 @@ public class Employee_Commission extends Employee
     {
         super(Empty);
 
+        //Commission Rate - 6%
         rate = .06f;
     }
 }
