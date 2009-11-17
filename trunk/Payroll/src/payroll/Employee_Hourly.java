@@ -24,6 +24,7 @@ public class Employee_Hourly extends Employee
     {
         super(Empty);
 
+        //Hourly wage - $8/hour.
         rate = 8.00f;
     }
 

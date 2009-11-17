@@ -4,15 +4,15 @@ import java.util.*;
 import java.io.Serializable;
 
 /**
- *  This class holds all the shift information
+ *  This class holds all the commission information
  *  @author bross
  */
-public class TimeSheet implements Serializable
+public class CommissionSheet implements Serializable
 {
     //Holds only today's date
     private String date = Globals.getDateTime(true);
-    //List of todays "punches"
-    public List<TimePunch> timePunches = new ArrayList<TimePunch>();
+    //List of todays commission records
+    public List<CommissionRecord> commissionRecords = new ArrayList<CommissionRecord>();
 
     //Gets and Sets
     public String getDate()
@@ -23,19 +23,19 @@ public class TimeSheet implements Serializable
     {
         date = value;
     }
-    public List<TimePunch> getTimePunches()
+    public List<CommissionRecord> getCommissionRecords()
     {
-        return timePunches;
+        return commissionRecords;
     }
-    public void setTimePunches(List<TimePunch> value)
+    public void setCommissionRecords(List<CommissionRecord> value)
     {
-        timePunches = value;
+        commissionRecords = value;
     }
     
     /**
      * Default Constructor
      */
-    public TimeSheet()
+    public CommissionSheet()
     {
         date = date.replace("/", "");
     }

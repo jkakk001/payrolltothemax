@@ -50,14 +50,16 @@ public class TimePunch implements Serializable
         type = punchType;
     }
 
-    public void printInfo()
+    /**
+     * Prints out the time punch info
+     * @return  The type of punch and the associated time
+     */
+    public String toString()
     {
         if (type == 1)
-            System.out.print("In :  ");
+            return "In :  " + time;
         else
-            System.out.print("Out : ");
-
-        System.out.println(time);
+            return "Out : " + time;
     }
 
 }
