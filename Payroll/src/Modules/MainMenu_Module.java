@@ -7,7 +7,7 @@ import java.util.Scanner;
  *  This module contains the main menu of the program
  *  @author Blake
  */
-public class MainMenu {
+public class MainMenu_Module {
 
     /**
      *  Displays the main menu and directs the

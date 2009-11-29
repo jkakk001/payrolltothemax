@@ -14,30 +14,36 @@ import java.util.Scanner;
  */
 public class MainProgram {
     //Declare the modules
-    MainMenu mainMenu;
-    Test testing;
-    EmployeeList employeeList;
-    CreateEmployee createEmployee;
-    SelectEmployee selectEmployee;
-    EditEmployee editEmployee;
-    Login loginScreen;
-    TimeClock timeClock;
-    AdminMenu adminMenu;
+    MainMenu_Module mainMenu;
+    Test_Module testing;
+    EmployeeList_Module employeeList;
+    CreateEmployee_Module createEmployee;
+    SelectEmployee_Module selectEmployee;
+    EditEmployee_Module editEmployee;
+    Login_Module loginScreen;
+    TimeClock_Module timeClock;
+    EditCommission_Module editCommission;
+    EditClock_Module editClock;
+
+    AdminMenu_Module adminMenu;
 
     /**
      * Default constructor; Initializes the modules etc.
      */
     public MainProgram()
     {
-        mainMenu = new MainMenu();
-        testing = new Test();
-        employeeList = new EmployeeList();
-        createEmployee = new CreateEmployee();
-        selectEmployee = new SelectEmployee();
-        editEmployee = new EditEmployee();
-        loginScreen = new Login();
-        timeClock = new TimeClock();
-        adminMenu = new AdminMenu();
+        mainMenu = new MainMenu_Module();
+        testing = new Test_Module();
+        employeeList = new EmployeeList_Module();
+        createEmployee = new CreateEmployee_Module();
+        selectEmployee = new SelectEmployee_Module();
+        editEmployee = new EditEmployee_Module();
+        loginScreen = new Login_Module();
+        timeClock = new TimeClock_Module();
+        editCommission = new EditCommission_Module();
+        editClock = new EditClock_Module();
+        adminMenu = new AdminMenu_Module();
+        
 
         //Display the welcome message
         DisplayWelcome();
@@ -58,7 +64,7 @@ public class MainProgram {
             case TimeClock:  TimeClock(); break;
             //Display the menu
             case MainMenu: MainMenu(); break;
-            //Display the menu
+            //Display the administrator menu
             case AdminMenu: AdminMenu(); break;
             //List of Employees
             case EmployeeList: EmployeeList(); break;
@@ -68,6 +74,10 @@ public class MainProgram {
             case SelectEmployee: SelectEmployee(); break;
             //Create a new employee
             case CreateEmployee: CreateEmployee(); break;
+            //Edit Employee Commission Data
+            case EditCommission: EditCommission(); break;
+            //Edit Employee Commission Data
+            case EditClock: EditClock(); break;
             //Runs the test module
             case Test: Testing(); break;
             //Exit the program...
@@ -94,7 +104,7 @@ public class MainProgram {
 
     /**
      * Loops the login module
-     * @see Modules.Login
+     * @see Modules.Login_Module
      */
     public void LoginScreen()
     {
@@ -105,7 +115,7 @@ public class MainProgram {
 
     /**
      * Loops through the employeeList update until false
-     * @see Modules.EmployeeList
+     * @see Modules.EmployeeList_Module
      */
     public void EmployeeList()
     {
@@ -116,7 +126,7 @@ public class MainProgram {
 
     /**
      * Loops through the selectEmployee update.
-     * @see Modules.SelectEmployee
+     * @see Modules.SelectEmployee_Module
      */
     public void SelectEmployee()
     {
@@ -127,18 +137,27 @@ public class MainProgram {
 
     /**
      * Loops through the editEmployee update.
-     * @see Modules.EditEmployee
+     * @see Modules.EditEmployee_Module
      */
     public void EditEmployee()
     {
         while (editEmployee.Update())
         {}
-
+    }
+    
+    /**
+     * Loops through the editClock update.
+     * @see Modules.EditClock_Module
+     */
+    public void EditClock()
+    {
+        while (editClock.Update())
+        {}
     }
 
     /**
      * Loops through the createEmployee update.
-     * @see Modules.CreateEmployee
+     * @see Modules.CreateEmployee_Module
      */
     public void CreateEmployee()
     {
@@ -149,7 +168,7 @@ public class MainProgram {
 
     /**
      * Loops through the mainMenu update until false
-     * @see Modules.MainMenu
+     * @see Modules.MainMenu_Module
      */
     public void MainMenu()
     {
@@ -159,7 +178,7 @@ public class MainProgram {
 
     /**
      * Loops through the adminMenu update until false
-     * @see Modules.AdminMenu
+     * @see Modules.AdminMenu_Module
      */
     public void AdminMenu()
     {
@@ -170,7 +189,7 @@ public class MainProgram {
 
     /**
      * Loops through the timeClock update until false
-     * @see Modules.TimeClock
+     * @see Modules.TimeClock_Module
      */
     public void TimeClock()
     {
@@ -181,8 +200,19 @@ public class MainProgram {
     }
 
     /**
+     * Loops through the editCommission update until false
+     * @see Modules.TimeClock_Module
+     */
+    public void EditCommission()
+    {
+        while (editCommission.Update())
+        {}
+
+    }
+
+    /**
      * Loops through the testing module until false, then goes back to the menu.
-     * @see Modules.Test
+     * @see Modules.Test_Module
      */
     public void Testing()
     {
