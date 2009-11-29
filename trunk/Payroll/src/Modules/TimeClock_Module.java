@@ -8,7 +8,7 @@ import java.io.*;
  * This module handles the viewing of employee hours and clocking in/out etc.
  * @author Blake
  */
-public class TimeClock
+public class TimeClock_Module
 {
     //Time card to open
     TimeSheet timeSheet;

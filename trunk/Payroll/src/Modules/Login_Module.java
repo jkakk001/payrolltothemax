@@ -7,7 +7,7 @@ import java.util.Scanner;
  * Used for employee authentication
  * @author bross
  */
-public class Login {
+public class Login_Module {
 
     /**
      *  This module handles the user ID/password authentication.

@@ -8,7 +8,7 @@ import java.util.Scanner;
  * employee information, making time corrections, and printing out pay checks.
  * @author Blake
  */
-public class AdminMenu
+public class AdminMenu_Module
 {
     /**
      *  Loops through the Administrator Menu

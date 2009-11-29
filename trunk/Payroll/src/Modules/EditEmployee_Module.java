@@ -7,7 +7,7 @@ import java.util.Scanner;
  * This module is used for editing employee information
  * @author Blake
  */
-public class EditEmployee
+public class EditEmployee_Module
 {
     Employee temporaryEmployee; //Holds the data that will be changed
 
@@ -105,6 +105,16 @@ public class EditEmployee
                         temporaryEmployee.setRate( Float.parseFloat((String)GetReplacement()) / 100 );
                     madeChanges = true;
                     break;
+                //Edit Commission/Clock Data
+                case 10:
+                    if (temporaryEmployee instanceof Employee_Commission)
+                        Globals.currentState = Globals.State.EditCommission;
+                    else if (temporaryEmployee instanceof Employee_Hourly)
+                        Globals.currentState = Globals.State.EditClock;
+                    //Set the choice to 99 so we can check for changes
+                    //and save before going to the other menu
+                    choice = 99;
+                    break;
                 //Previous Menu
                 case 99:
                     Globals.currentState = Globals.State.AdminMenu;
@@ -130,7 +140,7 @@ public class EditEmployee
                     System.out.println("Invalid choice.");
             }
 
-            //Export and reload
+            //Export, reload the database
             if (stringChoice.equals("y") || stringChoice.equals("Y"))
             {
                 Serialize.SaveToXML("Database\\" + temporaryEmployee.getEmployeeID() + "\\",  "Employee.xml", temporaryEmployee);
@@ -160,6 +170,10 @@ public class EditEmployee
             System.out.printf( "(9)  Rate:      \t$%1.2f\n", temporaryEmployee.getRate());
         else if (temporaryEmployee instanceof Employee_Commission)
             System.out.printf( "(9)  Rate:      \t%%%1.2f\n", temporaryEmployee.getRate() * 100);
+        if (temporaryEmployee instanceof Employee_Commission)
+            System.out.printf( "(10) *Enter Commission Data\n");
+        else if (temporaryEmployee instanceof Employee_Hourly)
+            System.out.printf( "(10) *Edit Clock Times\n");
         
 
         System.out.println("(99) Back");

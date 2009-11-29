@@ -5,7 +5,7 @@ import payroll.*;
  * A test module to make sure certain functions work, like file input/output etc.
  * @author Blake
  */
-public class Test {
+public class Test_Module {
 
 
     /**

@@ -7,7 +7,7 @@ import java.util.*;
  *  Displays the employee list.
  *  @author Blake
  */
-public class EmployeeList {
+public class EmployeeList_Module {
 
     //Comparators.  Used to sort the list of employees
     static final Comparator<Employee> LASTNAME_ORDER = new Comparator<Employee>()

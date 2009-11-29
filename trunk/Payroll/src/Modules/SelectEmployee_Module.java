@@ -8,7 +8,7 @@ import java.util.*;
  * either use a search function or enter the employee ID directly
  * @author bross
  */
-public class SelectEmployee
+public class SelectEmployee_Module
 {
 
     /**

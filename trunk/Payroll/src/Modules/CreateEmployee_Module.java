@@ -7,7 +7,7 @@ import java.util.Scanner;
  * This module is used for creating new employees
  * @author bross
  */
-public class CreateEmployee
+public class CreateEmployee_Module
 {
     /**
      * This is the main employee creation loop
