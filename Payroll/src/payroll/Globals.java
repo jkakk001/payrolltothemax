@@ -21,7 +21,7 @@ public class Globals {
         EditEmployee,       //  Edit Employee Details
         EmployeeList,       //  List the employees
         TimeClock,          //  Clock in/out
-        EditCommission,    //  Enter commission data
+        EditCommission,     //  Enter commission data
         EditClock,          //  Edit employee clock data
         Test,               //  For Testing
         Quit,               //  Quit the program

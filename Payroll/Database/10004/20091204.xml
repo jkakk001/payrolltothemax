@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_17" class="java.beans.XMLDecoder"> 
+ <object class="payroll.TimeSheet"> 
+  <void property="timePunches"> 
+   <void method="add"> 
+    <object class="payroll.TimePunch"> 
+     <void property="time"> 
+      <string>12/04/2009 16:17:25</string> 
+     </void> 
+     <void property="type"> 
+      <int>1</int> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="payroll.TimePunch"> 
+     <void property="time"> 
+      <string>12/04/2009 16:17:26</string> 
+     </void> 
+     <void property="type"> 
+      <int>2</int> 
+     </void> 
+    </object> 
+   </void> 
+  </void> 
+ </object> 
+</java> 
