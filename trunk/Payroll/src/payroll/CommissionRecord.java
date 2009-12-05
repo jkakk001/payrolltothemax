@@ -14,6 +14,8 @@ public class CommissionRecord implements Serializable
     private String date;
     //The dollar amount of the sale.
     private float amount;
+    //The commission rate at the time of sale.
+    private float rate;
 
     //Gets and Sets
     public String getTimeEntered()
@@ -40,7 +42,14 @@ public class CommissionRecord implements Serializable
     {
         amount = value;
     }
-
+    public float getRate()
+    {
+        return rate;
+    }
+    public void setRate(float value)
+    {
+        rate = value;
+    }
 
     /**
      * Default Constructor
@@ -50,6 +59,7 @@ public class CommissionRecord implements Serializable
         timeEntered = "";
         date = "";
         amount = 0;
+        rate = .06f;
     }
 
     /**

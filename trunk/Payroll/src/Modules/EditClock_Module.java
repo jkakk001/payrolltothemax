@@ -25,7 +25,8 @@ public class EditClock_Module
      */
     void PrintMenuChoices()
     {
-        System.out.println("(1)  - ");
+        System.out.println("(1)  - Change Time Record");
+        System.out.println("(2)  - Delete Time Record");
         System.out.println("(99) - Back to Main Menu");
     }
 
