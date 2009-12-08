@@ -147,15 +147,6 @@ public class MainProgram {
         {}
     }
     
-    /**
-     * Loops through the editClock update.
-     * @see Modules.EditClock_Module
-     */
-    public void EditClock()
-    {
-        while (editClock.Update())
-        {}
-    }
 
     /**
      * Loops through the createEmployee update.
@@ -199,6 +190,16 @@ public class MainProgram {
         while (timeClock.Update())
         {}
 
+    }
+    
+    /**
+     * Loops through the editClock update.
+     * @see Modules.EditClock_Module
+     */
+    public void EditClock()
+    {
+        while (editClock.Update())
+        {}
     }
 
     /**

@@ -128,18 +128,18 @@ public class EditCommission_Module
     /**
      * Saves the commission sheet to a file.
      */
-    private void SaveCommissionSheet()
+    private void SaveCommissionSheet(String sDate)
     {
         //Set up directory and file name
-        date = Globals.getDateTime(true);
-        date = date.replaceAll("/", "");
+        sDate = sDate.replaceAll("/", "");
         String directory = "Database\\" + Globals.currentEmployee.getEmployeeID() + "\\";
-        String filename = Integer.parseInt(date) + ".xml";
-        System.out.println("Date: " + date);
+        String filename = Integer.parseInt(sDate) + ".xml";
+        System.out.println("Date: " + sDate);
 
         //Save to XML
         Serialize.SaveToXML(directory, filename, commissionSheet);
     }
+
 
     /**
      * Allows the Admin to create a commission record
@@ -245,7 +245,7 @@ public class EditCommission_Module
                 String formattedDate = date.substring(4, 6) + "/" + date.substring(6) + "/" + date.substring(0, 4) + " 00:00:00";
                 LoadTimeSheet(date);
                 commissionSheet.commissionRecords.add(new CommissionRecord(Globals.getDateTime(false), formattedDate, amount, Globals.currentEmployee.getRate()));
-                SaveCommissionSheet();
+                SaveCommissionSheet(date);
             }
         }
     }
