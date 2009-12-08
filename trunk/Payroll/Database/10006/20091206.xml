@@ -5,13 +5,13 @@
    <void method="add"> 
     <object class="payroll.CommissionRecord"> 
      <void property="amount"> 
-      <float>12000.0</float> 
+      <float>11100.0</float> 
      </void> 
      <void property="date"> 
-      <string>12/08/2009 00:00:00</string> 
+      <string>12/06/2009 00:00:00</string> 
      </void> 
      <void property="timeEntered"> 
-      <string>12/08/2009 16:02:06</string> 
+      <string>12/08/2009 16:00:53</string> 
      </void> 
     </object> 
    </void> 
