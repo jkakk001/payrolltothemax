@@ -63,12 +63,23 @@ public class CommissionRecord implements Serializable
     }
 
     /**
+     * Overloaded Constructor (pass in: time entered, date, amount, rate)
+     */
+    public CommissionRecord(String tE, String d, float amt, float rt)
+    {
+        timeEntered = tE;
+        date = d;
+        amount = amt;
+        rate = rt;
+    }
+
+    /**
      * Prints out the commission info
      * @return  A string of all the commission record's info.
      */
     public String toString()
     {
-        return date + " - Sale Amount: " + amount + "(" + (amount*.06) + ")"
+        return date.substring(0, 10) + " - Sale Amount: " + amount + " (" + (amount*.06) + ")"
                     + ",entered on " + timeEntered;
     }
 

@@ -23,8 +23,8 @@ public class MainProgram {
     Login_Module loginScreen;
     TimeClock_Module timeClock;
     EditCommission_Module editCommission;
+    ViewCommission_Module viewCommission;
     EditClock_Module editClock;
-
     AdminMenu_Module adminMenu;
 
     /**
@@ -41,10 +41,10 @@ public class MainProgram {
         loginScreen = new Login_Module();
         timeClock = new TimeClock_Module();
         editCommission = new EditCommission_Module();
+        viewCommission = new ViewCommission_Module();
         editClock = new EditClock_Module();
         adminMenu = new AdminMenu_Module();
         
-
         //Display the welcome message
         DisplayWelcome();
         //Load the employees from the database
@@ -76,7 +76,9 @@ public class MainProgram {
             case CreateEmployee: CreateEmployee(); break;
             //Edit Employee Commission Data
             case EditCommission: EditCommission(); break;
-            //Edit Employee Commission Data
+            //View Employee Commission Data
+            case ViewCommission: ViewCommission(); break;
+            //Edit Employee Clock Data
             case EditClock: EditClock(); break;
             //Runs the test module
             case Test: Testing(); break;
@@ -201,13 +203,20 @@ public class MainProgram {
 
     /**
      * Loops through the editCommission update until false
-     * @see Modules.TimeClock_Module
      */
     public void EditCommission()
     {
         while (editCommission.Update())
         {}
+    }
 
+    /**
+     * Loops through the viewCommission update until false
+     */
+    public void ViewCommission()
+    {
+        while (viewCommission.Update())
+        {}
     }
 
     /**
