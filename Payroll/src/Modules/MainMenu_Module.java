@@ -26,7 +26,10 @@ public class MainMenu_Module {
 
         //Print the menu options to the screen
         System.out.println("Please choose an option from below: ");
-        System.out.println("(1)  - Clock");
+        if (Globals.currentUser instanceof Employee_Hourly)
+            System.out.println("(1)  - Clock");
+        else if (Globals.currentUser instanceof Employee_Commission)
+            System.out.println("(1)  - View Commission");
         //Shows the administrator menu option if the user has admin rights
         if (Globals.currentUser.getIsAdmin())
             System.out.println("(2)  - Administrator Menu");
@@ -42,8 +45,16 @@ public class MainMenu_Module {
 
             //Clock in and out, view timesheet etc.
             case 1:
-                Globals.currentState = Globals.State.TimeClock;
-                return false;
+                if (Globals.currentUser instanceof Employee_Hourly)
+                {
+                    Globals.currentState = Globals.State.TimeClock;
+                    return false;
+                }
+                else if (Globals.currentUser instanceof Employee_Commission)
+                {
+                    Globals.currentState = Globals.State.ViewCommission;
+                    return false;
+                }
             //Admin menu
             case 2:
                 //Check for Admin access

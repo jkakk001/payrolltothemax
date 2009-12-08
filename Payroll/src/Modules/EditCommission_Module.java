@@ -108,11 +108,146 @@ public class EditCommission_Module
     }
 
     /**
+     *  Loads the commission sheet for a specific date
+     */
+    public void LoadTimeSheet(String tDate)
+    {
+        //Get the directory and file names
+        tDate = tDate.replaceAll("/", "");
+        String directory = "Database\\" + Globals.currentEmployee.getEmployeeID() + "\\";
+        String filename = Integer.parseInt(tDate) + ".xml";
+        File file = new File(directory + filename);
+
+        //Check to see if a time sheet exists for today
+        if (file.exists())
+            commissionSheet = (CommissionSheet) Serialize.LoadFromXML(directory, filename);
+        else
+            commissionSheet = new CommissionSheet();
+    }
+
+    /**
+     * Saves the commission sheet to a file.
+     */
+    private void SaveCommissionSheet()
+    {
+        //Set up directory and file name
+        date = Globals.getDateTime(true);
+        date = date.replaceAll("/", "");
+        String directory = "Database\\" + Globals.currentEmployee.getEmployeeID() + "\\";
+        String filename = Integer.parseInt(date) + ".xml";
+        System.out.println("Date: " + date);
+
+        //Save to XML
+        Serialize.SaveToXML(directory, filename, commissionSheet);
+    }
+
+    /**
      * Allows the Admin to create a commission record
      */
     void CreateCommissionRecord()
     {
+        int intInput = -1;
+        float amount = 0f;
+        String strInput;
         
+        do
+        {
+        System.out.println("(1) Todays date.");
+        System.out.println("(2) Specify a date.");
+        System.out.println("(99) Back");
+        intInput = GetInt();
+        if (intInput != 1 && intInput != 2 && intInput != 99)
+            {
+                System.out.println("Invalid input.  Please enter a valid choice.");
+            }
+        } while (intInput != 1 && intInput != 2 && intInput != 99);
+
+        //Set up directory and file name using the date
+        if (intInput == 1)
+        {
+            date = Globals.getDateTime(true);
+            date = date.replaceAll("/", "");
+        }
+        if (intInput == 2)
+        {
+            do
+            {
+                //Get the year
+                do
+                {
+                    System.out.println("Which year?");
+                    intInput = GetInt();
+                    if (intInput <= 1900 || intInput > 3000)
+                        {
+                            System.out.println("Invalid input.  Please enter a valid year.");
+                        }
+                } while (intInput <= 1900 || intInput > 3000);
+                date = Integer.toString(intInput);
+
+                //Get the month
+                do
+                {
+                    System.out.println("Which month? (1-12)");
+                    intInput = GetInt();
+                    if (intInput <= 0 || intInput > 12)
+                        {
+                            System.out.println("Invalid input.  Please enter a valid month.");
+                        }
+                } while (intInput <= 0 || intInput > 12);
+                if (intInput < 10)
+                    date += "0";
+                date  += Integer.toString(intInput);
+
+                //Get the day
+                do
+                {
+                    System.out.println("Which day?");
+                    intInput = GetInt();
+                    if (intInput <= 0 || intInput > 31)
+                        {
+                            System.out.println("Invalid input.  Please enter a valid day.");
+                        }
+                } while (intInput <= 0 || intInput > 31);
+                if (intInput < 10)
+                    date += "0";
+                date += Integer.toString(intInput);
+
+                System.out.println("\nEntered date: " + date.substring(4, 6) + "/" + date.substring(6) + "/" + date.substring(0, 4));
+                System.out.println("Is this correct?");
+                strInput = GetString();
+            } while (!strInput.equals("y") && !strInput.equals("Y"));
+        }
+
+        if (intInput != 99)
+        {
+            //Get the employee ID and set the directory and filename.
+            String directory = "Database\\" + Globals.currentEmployee.getEmployeeID() + "\\";
+            String filename = Integer.parseInt(date) + ".xml";
+
+            System.out.println("Sale amount: ");
+            amount = GetFloat();
+
+            do
+            {
+                System.out.println("\nDate: " + date.substring(4, 6) + "/" + date.substring(6) + "/" + date.substring(0, 4));
+                System.out.println("Sale amount: " + amount);
+                System.out.println("Is this correct? (y/n)");
+                strInput = GetString();
+                if (!strInput.equals("y") && !strInput.equals("Y")
+                        && !strInput.equals("n") && !strInput.equals("N"))
+                    System.out.println("Invalid choice.");
+            } while (!strInput.equals("y") && !strInput.equals("Y")
+                        && !strInput.equals("n") && !strInput.equals("N"));
+
+            //Save to XML
+            if (strInput.equals("y") || strInput.equals("Y"))
+            {
+                String formattedDate = date.substring(4, 6) + "/" + date.substring(6) + "/" + date.substring(0, 4) + " 00:00:00";
+                LoadTimeSheet(date);
+                commissionSheet.commissionRecords.add(new CommissionRecord(Globals.getDateTime(false), formattedDate, amount, Globals.currentEmployee.getRate()));
+                SaveCommissionSheet();
+            }
+        }
     }
 
     /**
@@ -133,6 +268,9 @@ public class EditCommission_Module
         }
     }
 
+    /**
+     * Loads the employees pay period information
+     */
     private void LoadPayPeriod()
     {
         //Set up the directory
@@ -220,8 +358,10 @@ public class EditCommission_Module
     private void ViewPayPeriod()
     {
         LoadPayPeriod();
+        float totalGrossAmt = 0;
+        float totalNetAmt = 0;
 
-        System.out.println("Days worked: " + payPeriod.size());
+        System.out.println("Records: " + payPeriod.size());
 
         //Print commission sheet information for each day
         if (payPeriod.size() > 0)
@@ -229,9 +369,16 @@ public class EditCommission_Module
             for (CommissionSheet c: payPeriod)
                 {
                     for (CommissionRecord cR: c.commissionRecords)
+                    {
                         System.out.println(cR.toString());
+                        totalGrossAmt += cR.getAmount();
+                        totalNetAmt += (cR.getAmount() * cR.getRate());
+                    }
                 }
         }
+
+        System.out.println("Total Gross Amount: " + totalGrossAmt);
+        System.out.println("Total Net Amount: " + totalNetAmt);
 
         //Wait for user input
         System.out.print("Press enter to continue...");
@@ -239,6 +386,64 @@ public class EditCommission_Module
         sc.nextLine();
     }
 
+    /**
+     * Gets user input and returns it
+     * @return an integer
+     */
+    int GetInt()
+    {
+        Scanner input/* = new Scanner(System.in)*/;
+        int inInt = -99999;
 
+        do 
+        {
+            input = new Scanner(System.in);
+            System.out.print("Choice: ");
+            if (input.hasNextInt())
+                inInt = input.nextInt();
+            else
+                System.out.println("Please enter a valid number.");
+        } while (inInt == -99999);
+
+        return inInt;
+    }
+
+    /**
+     * Gets user input and returns it
+     * @return a float
+     */
+    float GetFloat()
+    {
+        Scanner input/* = new Scanner(System.in)*/;
+        float inFlt = -99999.99f;
+
+        do
+        {
+            input = new Scanner(System.in);
+            System.out.print("Choice: ");
+            if (input.hasNextFloat())
+                inFlt = input.nextFloat();
+            else
+                System.out.println("Please enter a valid number.");
+        } while (inFlt == -99999.99f);
+
+        return inFlt;
+    }
+
+    /**
+     * Gets user input and returns it
+     * @return a string
+     */
+    String GetString()
+    {
+        Scanner input = new Scanner(System.in);
+        String inStr = "";
+
+        System.out.print("Choice: ");
+        inStr = input.nextLine();
+
+        return inStr;
+    }
+    
 
 }
