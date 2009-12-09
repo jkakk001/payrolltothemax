@@ -109,8 +109,6 @@ public class EditEmployee_Module
                 case 10:
                     if (temporaryEmployee instanceof Employee_Commission)
                         Globals.currentState = Globals.State.EditCommission;
-                    else if (temporaryEmployee instanceof Employee_Hourly)
-                        Globals.currentState = Globals.State.EditClock;
                     //Set the choice to 99 so we can check for changes
                     //and save before going to the other menu
                     choice = 99;
@@ -171,10 +169,7 @@ public class EditEmployee_Module
         else if (temporaryEmployee instanceof Employee_Commission)
             System.out.printf( "(9)  Rate:      \t%%%1.2f\n", temporaryEmployee.getRate() * 100);
         if (temporaryEmployee instanceof Employee_Commission)
-            System.out.printf( "(10) *Enter Commission Data\n");
-        else if (temporaryEmployee instanceof Employee_Hourly)
-            System.out.printf( "(10) *Edit Clock Times\n");
-        
+            System.out.printf( "(10) *Enter Commission Data\n");        
 
         System.out.println("(99) Back");
     }
