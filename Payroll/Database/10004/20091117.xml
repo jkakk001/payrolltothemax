@@ -5,7 +5,7 @@
    <void method="add"> 
     <object class="payroll.TimePunch"> 
      <void property="time"> 
-      <string>11/17/2009 14:24:18</string> 
+      <string>11/17/2009 09:24:18</string> 
      </void> 
      <void property="type"> 
       <int>1</int> 
