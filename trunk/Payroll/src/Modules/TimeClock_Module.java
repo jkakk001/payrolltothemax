@@ -32,13 +32,13 @@ public class TimeClock_Module
         System.out.println("**TIME CLOCK**\n");
         
         //Display the time sheet for today
-        if (timeSheet.timePunches.size() == 0)
+        if (timeSheet.getTimePunches().size() == 0)
             System.out.println("*There are no records for today*");
         else
         {
             System.out.println("Today's Time Sheet: ");
-            for (TimePunch tP : timeSheet.timePunches)
-                tP.toString();
+            for (TimePunch tP : timeSheet.getTimePunches())
+                System.out.println(tP.toString());
         }
 
         //Print the menu
@@ -113,9 +113,9 @@ public class TimeClock_Module
     {
         //Check to make sure you haven't already clocked in
 
-        if (timeSheet.timePunches.size() == 0 || timeSheet.timePunches.get(timeSheet.timePunches.size()-1).getType() != 1)
+        if (timeSheet.getTimePunches().size() == 0 || timeSheet.getTimePunches().get(timeSheet.getTimePunches().size()-1).getType() != 1)
         {
-            timeSheet.timePunches.add(new TimePunch(1));
+            timeSheet.getTimePunches().add(new TimePunch(1));
             SaveTimeSheet();
         }
         else
@@ -128,9 +128,9 @@ public class TimeClock_Module
     private void ClockOut()
     {
         //Check to make sure you haven't already clocked out
-        if (timeSheet.timePunches.size() == 0 || timeSheet.timePunches.get(timeSheet.timePunches.size()-1).getType() != 2)
+        if (timeSheet.getTimePunches().size() == 0 || timeSheet.getTimePunches().get(timeSheet.getTimePunches().size()-1).getType() != 2)
         {
-            timeSheet.timePunches.add(new TimePunch(2));
+            timeSheet.getTimePunches().add(new TimePunch(2));
             SaveTimeSheet();
         }
         else
@@ -158,6 +158,7 @@ public class TimeClock_Module
      */
     private void ViewPayPeriod()
     {
+        payPeriod = new ArrayList<TimeSheet>();
         //Set up the directory
         String directory = "Database\\" + Globals.currentUser.getEmployeeID() + "\\";
 
@@ -240,12 +241,33 @@ public class TimeClock_Module
         System.out.println("Days worked: " + payPeriod.size());
 
         //Print time sheet information for each day
+        float totalHours = 0;
         for (TimeSheet t: payPeriod)
         {
-            for (TimePunch tP: t.timePunches)
+            String inTime = "";
+            String outTime = "";
+            float difference = 0;
+            for (TimePunch tP: t.getTimePunches())
+            {
+                if (tP.getType() == 1)
+                    inTime = tP.getTime().substring(11);
+                else if (tP.getType() == 2)
+                {
+                    outTime = tP.getTime().substring(11);
+
+                    difference = Integer.parseInt(outTime.substring(0,2)) - Integer.parseInt(inTime.substring(0,2));
+                    difference += (Integer.parseInt(outTime.substring(3,5)) - Integer.parseInt(inTime.substring(3,5))) / 60f;
+                    difference += (Integer.parseInt(outTime.substring(6)) - Integer.parseInt(inTime.substring(6))) / 3600f;
+
+                    totalHours += difference;
+                }
                 System.out.println(tP.toString());
+
+            }
         }
 
+        System.out.println("Total Hours: " + totalHours);
+        
         //Wait for user input
         System.out.print("Press enter to continue...");
         Scanner sc = new Scanner(System.in);

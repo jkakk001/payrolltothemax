@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_17" class="java.beans.XMLDecoder"> 
+ <object class="payroll.CommissionSheet"> 
+  <void property="commissionRecords"> 
+   <void method="add"> 
+    <object class="payroll.CommissionRecord"> 
+     <void property="amount"> 
+      <float>1357.6</float> 
+     </void> 
+     <void property="date"> 
+      <string>12/01/2009 00:00:00</string> 
+     </void> 
+     <void property="timeEntered"> 
+      <string>12/09/2009 02:59:02</string> 
+     </void> 
+    </object> 
+   </void> 
+  </void> 
+ </object> 
+</java> 

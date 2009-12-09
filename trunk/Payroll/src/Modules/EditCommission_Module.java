@@ -170,52 +170,7 @@ public class EditCommission_Module
         }
         if (intInput == 2)
         {
-            do
-            {
-                //Get the year
-                do
-                {
-                    System.out.println("Which year?");
-                    intInput = GetInt();
-                    if (intInput <= 1900 || intInput > 3000)
-                        {
-                            System.out.println("Invalid input.  Please enter a valid year.");
-                        }
-                } while (intInput <= 1900 || intInput > 3000);
-                date = Integer.toString(intInput);
-
-                //Get the month
-                do
-                {
-                    System.out.println("Which month? (1-12)");
-                    intInput = GetInt();
-                    if (intInput <= 0 || intInput > 12)
-                        {
-                            System.out.println("Invalid input.  Please enter a valid month.");
-                        }
-                } while (intInput <= 0 || intInput > 12);
-                if (intInput < 10)
-                    date += "0";
-                date  += Integer.toString(intInput);
-
-                //Get the day
-                do
-                {
-                    System.out.println("Which day?");
-                    intInput = GetInt();
-                    if (intInput <= 0 || intInput > 31)
-                        {
-                            System.out.println("Invalid input.  Please enter a valid day.");
-                        }
-                } while (intInput <= 0 || intInput > 31);
-                if (intInput < 10)
-                    date += "0";
-                date += Integer.toString(intInput);
-
-                System.out.println("\nEntered date: " + date.substring(4, 6) + "/" + date.substring(6) + "/" + date.substring(0, 4));
-                System.out.println("Is this correct?");
-                strInput = GetString();
-            } while (!strInput.equals("y") && !strInput.equals("Y"));
+            SpecifyDate();
         }
 
         if (intInput != 99)
@@ -252,11 +207,13 @@ public class EditCommission_Module
         }
     }
 
+
     /**
      * Allows the Admin to delete a commission record
      */
     void DeleteCommissionRecord()
     {
+        //TODO
         LoadPayPeriod();
         if (payPeriod.size() > 0)
         {
@@ -360,8 +317,8 @@ public class EditCommission_Module
     private void ViewPayPeriod()
     {
         LoadPayPeriod();
-        float totalGrossAmt = 0;
-        float totalNetAmt = 0;
+        float totalSales = 0;
+        float totalEarnings = 0;
 
         System.out.println("Records: " + payPeriod.size());
 
@@ -373,19 +330,76 @@ public class EditCommission_Module
                     for (CommissionRecord cR: c.commissionRecords)
                     {
                         System.out.println(cR.toString());
-                        totalGrossAmt += cR.getAmount();
-                        totalNetAmt += (cR.getAmount() * cR.getRate());
+                        totalSales += cR.getAmount();
+                        totalEarnings += (cR.getAmount() * cR.getRate());
                     }
                 }
         }
 
-        System.out.printf( "Total Gross Amount: $%1.2f\n", totalGrossAmt);
-        System.out.printf( "Total Net Amount:   $%1.2f\n", totalNetAmt);
+        System.out.printf( "Total Sales Amount: $%1.2f\n", totalSales);
+        System.out.printf( "Total Earnings:     $%1.2f\n", totalEarnings);
 
         //Wait for user input
         System.out.print("Press enter to continue...");
         Scanner sc = new Scanner(System.in);
         sc.nextLine();
+    }
+
+    /**
+     * Used to enter a date
+     */
+    void SpecifyDate()
+    {
+        int intInput = -1;
+        String strInput;
+
+        do
+        {
+            //Get the year
+            do
+            {
+                System.out.println("Which year?");
+                intInput = GetInt();
+                if (intInput <= 1900 || intInput > 3000)
+                    {
+                        System.out.println("Invalid input.  Please enter a valid year.");
+                    }
+            } while (intInput <= 1900 || intInput > 3000);
+            date = Integer.toString(intInput);
+
+            //Get the month
+            do
+            {
+                System.out.println("Which month? (1-12)");
+                intInput = GetInt();
+                if (intInput <= 0 || intInput > 12)
+                    {
+                        System.out.println("Invalid input.  Please enter a valid month.");
+                    }
+            } while (intInput <= 0 || intInput > 12);
+            if (intInput < 10)
+                date += "0";
+            date  += Integer.toString(intInput);
+
+            //Get the day
+            do
+            {
+                System.out.println("Which day?");
+                intInput = GetInt();
+                if (intInput <= 0 || intInput > 31)
+                    {
+                        System.out.println("Invalid input.  Please enter a valid day.");
+                    }
+            } while (intInput <= 0 || intInput > 31);
+            if (intInput < 10)
+                date += "0";
+            date += Integer.toString(intInput);
+
+            System.out.println("\nEntered date: " + date.substring(4, 6) + "/" + date.substring(6) + "/" + date.substring(0, 4));
+            System.out.println("Is this correct?");
+            strInput = GetString();
+        } while (!strInput.equals("y") && !strInput.equals("Y"));
+
     }
 
     /**

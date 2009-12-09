@@ -12,7 +12,7 @@ public class TimeSheet implements Serializable
     //Holds only today's date
     private String date = Globals.getDateTime(true);
     //List of todays "punches"
-    public List<TimePunch> timePunches = new ArrayList<TimePunch>();
+    private List<TimePunch> timePunches = new ArrayList<TimePunch>();
 
     //Gets and Sets
     public String getDate()

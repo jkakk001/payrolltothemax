@@ -118,8 +118,8 @@ public class ViewCommission_Module
     private void ViewPayPeriod()
     {
         LoadPayPeriod();
-        float totalGrossAmt = 0;
-        float totalNetAmt = 0;
+        float totalSales = 0;
+        float totalEarnings = 0;
 
         System.out.println("Records: " + payPeriod.size());
 
@@ -131,14 +131,14 @@ public class ViewCommission_Module
                     for (CommissionRecord cR: c.commissionRecords)
                     {
                         System.out.println(cR.toString());
-                        totalGrossAmt += cR.getAmount();
-                        totalNetAmt += (cR.getAmount() * cR.getRate());
+                        totalSales += cR.getAmount();
+                        totalEarnings += (cR.getAmount() * cR.getRate());
                     }
                 }
         }
 
-        System.out.printf( "Total Gross Amount: $%1.2f\n", totalGrossAmt);
-        System.out.printf( "Total Net Amount:   $%1.2f\n", totalNetAmt);
+        System.out.printf( "Total Sales Amount: $%1.2f\n", totalSales);
+        System.out.printf( "Total Earnings:     $%1.2f\n", totalEarnings);
 
         //Wait for user input
         System.out.print("Press enter to continue...");
