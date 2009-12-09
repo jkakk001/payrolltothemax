@@ -15,7 +15,6 @@ import java.util.Scanner;
 public class MainProgram {
     //Declare the modules
     MainMenu_Module mainMenu;
-    Test_Module testing;
     EmployeeList_Module employeeList;
     CreateEmployee_Module createEmployee;
     SelectEmployee_Module selectEmployee;
@@ -26,6 +25,7 @@ public class MainProgram {
     ViewCommission_Module viewCommission;
     EditClock_Module editClock;
     AdminMenu_Module adminMenu;
+    CalculatePay_Module calculatePay;
 
     /**
      * Default constructor; Initializes the modules etc.
@@ -33,7 +33,6 @@ public class MainProgram {
     public MainProgram()
     {
         mainMenu = new MainMenu_Module();
-        testing = new Test_Module();
         employeeList = new EmployeeList_Module();
         createEmployee = new CreateEmployee_Module();
         selectEmployee = new SelectEmployee_Module();
@@ -44,6 +43,7 @@ public class MainProgram {
         viewCommission = new ViewCommission_Module();
         editClock = new EditClock_Module();
         adminMenu = new AdminMenu_Module();
+        calculatePay = new CalculatePay_Module();
         
         //Display the welcome message
         DisplayWelcome();
@@ -80,8 +80,8 @@ public class MainProgram {
             case ViewCommission: ViewCommission(); break;
             //Edit Employee Clock Data
             case EditClock: EditClock(); break;
-            //Runs the test module
-            case Test: Testing(); break;
+            //Calculate employee pay and print paychecks
+            case CalculatePay: CalculatePay(); break;
             //Exit the program...
             case Quit: exitProgram(); break;
             default:
@@ -204,6 +204,7 @@ public class MainProgram {
 
     /**
      * Loops through the editCommission update until false
+     * @see Modules.EditCommission_Module
      */
     public void EditCommission()
     {
@@ -213,6 +214,7 @@ public class MainProgram {
 
     /**
      * Loops through the viewCommission update until false
+     * @see Modules.ViewCommission_Module
      */
     public void ViewCommission()
     {
@@ -221,12 +223,12 @@ public class MainProgram {
     }
 
     /**
-     * Loops through the testing module until false, then goes back to the menu.
-     * @see Modules.Test_Module
+     * Loops through the calculatePay update until false
+     * @see Modules.CalculatePay_Module
      */
-    public void Testing()
+    public void CalculatePay()
     {
-        while (testing.Update())
+        while (calculatePay.Update())
         {}
 
     }

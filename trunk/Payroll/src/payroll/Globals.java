@@ -24,7 +24,7 @@ public class Globals {
         EditCommission,     //  Enter commission data
         ViewCommission,     //  View commission data
         EditClock,          //  Edit employee clock data
-        Test,               //  For Testing
+        CalculatePay,       //  Calculate employee pay and print paychecks
         Quit,               //  Quit the program
     }
 
@@ -43,13 +43,13 @@ public class Globals {
 
     //Tax Variables - The default values are typical rates and
     //they are there for the sake of the programming class.
-    public static float federalTaxRate;         //  Default: .25
-    public static float stateTaxRate;           //  Default: .13 of Federal
-    public static float healthInsuranceRate;    //  Default: .07
-    public static float lifeInsuranceRate;      //  Default: .003
+    public static float federalTaxRate      = .25f;     //  Default: .25
+    public static float stateTaxRate        = .13f;     //  Default: .13 of Federal
+    public static float healthInsuranceRate = .07f;     //  Default: .07
+    public static float lifeInsuranceRate   = .003f;    //  Default: .003
     //Calculated after pre-tax stuff, from the remaining amount
-    public static float socialSecurityRate;     //  Default: .062   (calculated up to $106,800/yr incomes)
-    public static float medicareRate;           //  Default: .0145
+    public static float socialSecurityRate  = .062f;    //  Default: .062   (calculated up to $106,800/yr incomes)
+    public static float medicareRate        = .0145f;   //  Default: .0145
 
     /**
      * Returns the date and/or time.

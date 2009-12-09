@@ -45,6 +45,10 @@ public class AdminMenu_Module
             case 3:
                 Globals.currentState = Globals.State.EmployeeList;
                 return false;
+            //Calculate employee pay and print pay checks
+            case 4:
+                Globals.currentState = Globals.State.CalculatePay;
+                return false;
             //Previous menu
             case 99:
                 Globals.currentState = Globals.State.MainMenu;
@@ -66,6 +70,7 @@ public class AdminMenu_Module
         System.out.println("(1)  - Create Employee Record");
         System.out.println("(2)  - Edit/View Existing Employee Record");
         System.out.println("(3)  - View Employee List");
+        System.out.println("(4)  - Calculate Employee Pay");
         System.out.println("(99) - Back to Main Menu");
     }
 
