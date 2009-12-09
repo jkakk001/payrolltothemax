@@ -23,7 +23,6 @@ public class MainProgram {
     TimeClock_Module timeClock;
     EditCommission_Module editCommission;
     ViewCommission_Module viewCommission;
-    EditClock_Module editClock;
     AdminMenu_Module adminMenu;
     CalculatePay_Module calculatePay;
 
@@ -41,7 +40,6 @@ public class MainProgram {
         timeClock = new TimeClock_Module();
         editCommission = new EditCommission_Module();
         viewCommission = new ViewCommission_Module();
-        editClock = new EditClock_Module();
         adminMenu = new AdminMenu_Module();
         calculatePay = new CalculatePay_Module();
         
@@ -78,8 +76,6 @@ public class MainProgram {
             case EditCommission: EditCommission(); break;
             //View Employee Commission Data
             case ViewCommission: ViewCommission(); break;
-            //Edit Employee Clock Data
-            case EditClock: EditClock(); break;
             //Calculate employee pay and print paychecks
             case CalculatePay: CalculatePay(); break;
             //Exit the program...
@@ -190,16 +186,6 @@ public class MainProgram {
         while (timeClock.Update())
         {}
 
-    }
-    
-    /**
-     * Loops through the editClock update.
-     * @see Modules.EditClock_Module
-     */
-    public void EditClock()
-    {
-        while (editClock.Update())
-        {}
     }
 
     /**

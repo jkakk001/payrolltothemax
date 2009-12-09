@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_16" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_17" class="java.beans.XMLDecoder"> 
  <object class="payroll.Employee_Salary"> 
   <void property="address1"> 
    <string>Nowhere</string> 
@@ -18,6 +18,9 @@
   </void> 
   <void property="password"> 
    <string>password</string> 
+  </void> 
+  <void property="rate"> 
+   <float>12.0</float> 
   </void> 
  </object> 
 </java> 

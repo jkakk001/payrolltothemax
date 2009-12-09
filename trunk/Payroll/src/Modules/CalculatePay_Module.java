@@ -19,23 +19,41 @@ public class CalculatePay_Module
      */
     public boolean Update()
     {
+        int menuSelection = 1;
+        
         System.out.println(" " + Globals.getDateTime(false) + "\n");
         System.out.println("**CALCULATE PAY MENU**\n");
 
-        //Placeholder code for testing
-        System.out.println("ID: " + Globals.currentUser.getEmployeeID());
-        PrintPayChecks(Globals.currentUser.getEmployeeID());
-        System.out.printf("Gross pay: $%1.2f\n", grossPay);
-        System.out.printf("Net pay:   $%1.2f\n", netPay);
+        PrintMenuChoices();
 
-        System.out.println("ID: 10006");
-        PrintPayChecks(10006);
-        System.out.printf("Gross pay: $%1.2f\n", grossPay);
-        System.out.printf("Net pay:   $%1.2f\n", netPay);
+        //Make sure the input is an integer to prevent exceptions
+        menuSelection = GetInt();
+        System.out.println("");
 
-        //Change the state back to the admin menu, stop looping.
-        Globals.currentState = Globals.State.AdminMenu;
-        return false;
+        switch(menuSelection)
+        {
+            //Print Specific Paycheck
+            case 1:
+                System.out.println("Employee ID: ");
+                if (PreparePayChecks(GetInt(), true))
+                    Print();
+                return false;
+            //Print All Paychecks
+            case 2:
+                PreparePayChecks();
+                Print();
+                return false;
+            //Previous menu
+            case 99:
+                Globals.currentState = Globals.State.AdminMenu;
+                return false;
+            default:
+                System.out.println("Invalid choice.");
+                break;
+        }
+
+        //Keep looping
+        return true;
     }
 
     /**
@@ -45,28 +63,59 @@ public class CalculatePay_Module
     {
         System.out.println("(1)  - Print Specific Paycheck");
         System.out.println("(2)  - Print All Paychecks");
-        System.out.println("(3)  - Display Payroll Report");
         System.out.println("(99) - Back to Admin Menu");
     }
 
     /**
      * "Prints" the pay checks for distribution
      */
-    void PrintPayChecks()
+    void PreparePayChecks()
     {
-        
+        //Employee count
+        int count = 0;
+
+        //Company totals
+        float totalGross = 0;
+        float totalNet = 0;
+        for (Employee emp: Globals.Employees)
+        {
+            PreparePayChecks(emp.getEmployeeID(), false);
+
+            System.out.println(emp.getEmployeeID() + " - " + emp.getLastName() + ", " + emp.getFirstName());
+
+            //Add to company totals
+            totalGross += grossPay;
+            totalNet += netPay;
+            count++;
+        }
+
+        System.out.println(count + " employees.");
+        System.out.printf("Company-wide gross pay: $%1.2f\n", totalGross);
+        System.out.printf("Company-wide net pay:   $%1.2f\n", totalNet);
     }
 
     /**
      * "Prints" a specific pay check for distribution
      */
-    void PrintPayChecks(int empID)
+    boolean PreparePayChecks(int empID, boolean details)
     {
-        for (Employee e: Globals.Employees)
-            if (e.getEmployeeID() == empID)  CalculatePay(e);
+        File f = new File("Database\\" + Integer.toString(empID) + "\\");
+        if (f.exists())
+        {
+            for (Employee e: Globals.Employees)
+                if (e.getEmployeeID() == empID)  CalculatePay(e, details);
+
+            return true;
+        }
+        else
+        {
+            System.out.println("Cannot find employee. " 
+                              + "Make sure you entered the ID correctly");
+            return false;
+        }
     }
 
-    void CalculatePay(Employee emp)
+    void CalculatePay(Employee emp, boolean details)
     {
         grossPay = 0;
         netPay = 0;
@@ -107,25 +156,12 @@ public class CalculatePay_Module
                             else if (tR.getType() == 2)
                             {
                                 outTime = tR.getTime().substring(11);
-
+                                
                                 difference = Integer.parseInt(outTime.substring(0,2)) - Integer.parseInt(inTime.substring(0,2));
                                 difference += (Integer.parseInt(outTime.substring(3,5)) - Integer.parseInt(inTime.substring(3,5))) / 60f;
                                 difference += (Integer.parseInt(outTime.substring(6)) - Integer.parseInt(inTime.substring(6))) / 3600f;
 
                                 totalHours += difference;
-
-                                //Debugging stuff
-                                /*
-                                System.out.println("In Time: " + inTime);
-                                System.out.println("Out Time: " + outTime);
-                                float temp = Integer.parseInt(outTime.substring(0,2)) - Integer.parseInt(inTime.substring(0,2));
-                                System.out.println("Hours: " + temp);
-                                temp = (Integer.parseInt(outTime.substring(3,5)) - Integer.parseInt(inTime.substring(3,5))) / 60f;
-                                System.out.println("Minutes: " + temp);
-                                temp = (Integer.parseInt(outTime.substring(6)) - Integer.parseInt(inTime.substring(6))) / 3600f;
-                                System.out.println("Seconds: " + temp);
-                                System.out.println("Total Difference: " + difference);
-                                */
                             }
                         }
                     }
@@ -149,6 +185,36 @@ public class CalculatePay_Module
         float originalNet = netPay;
         netPay -= originalNet * Globals.socialSecurityRate;
         netPay -= originalNet * Globals.medicareRate;
+
+        //Show paycheck preview and deduction details.
+        if (details)
+        {
+            System.out.println("Check preview: ");
+            System.out.println(" ________________________________________________");
+            System.out.println("|COMPANY NAME                               1234 |");
+            System.out.println("|                                                |");
+            System.out.println("|Pay to the                                      |");
+            System.out.print("| order of:_" + emp.getFirstName() + " " + emp.getLastName());
+            System.out.printf("_________ $___%1.2f___\n", netPay);
+            System.out.println("|________________________________________________|");
+            System.out.println("|Bank of America                                 |");
+            System.out.println("|    Address                                     |");
+            System.out.println("|Memo__________________        _______________   |");
+            System.out.println("|________________________________________________|");
+            System.out.println("       001731   121000358   19976   02302        \n");
+
+            
+            System.out.println("***DEDUCTIONS***");
+            System.out.printf("Federal Taxes:    $%1.2f\n", grossPay * Globals.federalTaxRate);
+            System.out.printf("State Taxes:      $%1.2f\n", (grossPay * Globals.federalTaxRate) * Globals.stateTaxRate);
+            System.out.printf("Health Insurance: $%1.2f\n", grossPay * Globals.healthInsuranceRate);
+            System.out.printf("Life Insurance:   $%1.2f\n", grossPay * Globals.lifeInsuranceRate);
+            System.out.printf("Social Security:  $%1.2f\n", originalNet * Globals.socialSecurityRate);
+            System.out.printf("Medicare:         $%1.2f\n", originalNet * Globals.medicareRate);
+            System.out.println("_______________________________");
+            System.out.printf("Gross pay: $%1.2f\n", grossPay);
+            System.out.printf("Net pay:   $%1.2f\n", netPay);
+        }
     }
 
     /**
@@ -241,7 +307,6 @@ public class CalculatePay_Module
                 //Load it from XML
                 CommissionSheet c = (CommissionSheet) Serialize.LoadFromXML(directory, datesToGrab[i] + ".xml");
 
-                System.out.println("Info: " + c.getDate());
                 //Add it to the payPeriod list
                 payPeriod.add( c );
             }
@@ -342,13 +407,67 @@ public class CalculatePay_Module
                 TimeSheet t = (TimeSheet) Serialize.LoadFromXML(directory, datesToGrab[i] + ".xml");
                 //Add it to the payPeriod list
 
-                System.out.println("Info: " + t.getDate());
                 payPeriod.add( t );
                 //System.out.println("Found at Path: " + directory + datesToGrab[i] + ".xml");
             }
         }
 
         return payPeriod;
+    }
+
+    /**
+     * Gets user input and returns it
+     * @return an integer
+     */
+    int GetInt()
+    {
+        Scanner input/* = new Scanner(System.in)*/;
+        int inInt = -99999;
+
+        //Loop until the user inputs an int
+        do
+        {
+            input = new Scanner(System.in);
+            System.out.print("Choice: ");
+            if (input.hasNextInt())
+                inInt = input.nextInt();
+            else
+                System.out.println("Please enter a valid number.");
+        } while (inInt == -99999);
+
+        return inInt;
+    }
+
+    /**
+     * Makes the program sleep for a specified amount of time.
+     * @param length amount of time in milliseconds
+     */
+    void Sleep(int length)
+    {
+        try
+        {
+            Thread.currentThread().sleep(length);
+        }
+        catch (Exception e)
+        {}
+    }
+
+    /**
+     * "Prints" out the paychecks.
+     */
+    void Print()
+    {
+        System.out.print("*Sending to printer");
+
+        //Add some progress dots
+        for (int i = 0; i<10; i++)
+        {
+            Sleep(300);
+            System.out.print(".");
+        }
+
+        System.out.println("*DONE*\n");
+        Sleep(1000);
     }
 
 }

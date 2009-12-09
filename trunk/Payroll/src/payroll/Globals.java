@@ -23,7 +23,6 @@ public class Globals {
         TimeClock,          //  Clock in/out
         EditCommission,     //  Enter commission data
         ViewCommission,     //  View commission data
-        EditClock,          //  Edit employee clock data
         CalculatePay,       //  Calculate employee pay and print paychecks
         Quit,               //  Quit the program
     }
