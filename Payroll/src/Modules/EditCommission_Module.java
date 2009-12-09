@@ -30,7 +30,6 @@ public class EditCommission_Module
         Scanner in = new Scanner(System.in);
 
         System.out.println(Globals.getDateTime(false) + "\n");
-
         System.out.println("**COMMISSION RECORDS**\n");
 
         //Display the time sheet for today
@@ -149,7 +148,8 @@ public class EditCommission_Module
         int intInput = -1;
         float amount = 0f;
         String strInput;
-        
+
+        //Loop through the choices
         do
         {
         System.out.println("(1) Todays date.");
@@ -224,9 +224,11 @@ public class EditCommission_Module
             String directory = "Database\\" + Globals.currentEmployee.getEmployeeID() + "\\";
             String filename = Integer.parseInt(date) + ".xml";
 
+            //User inputs the amount of the sale
             System.out.println("Sale amount: ");
             amount = GetFloat();
 
+            //Output the entered data, verify it is correct.  If not, go back to the menu.
             do
             {
                 System.out.println("\nDate: " + date.substring(4, 6) + "/" + date.substring(6) + "/" + date.substring(0, 4));
@@ -239,7 +241,7 @@ public class EditCommission_Module
             } while (!strInput.equals("y") && !strInput.equals("Y")
                         && !strInput.equals("n") && !strInput.equals("N"));
 
-            //Save to XML
+            //Save the information to XML
             if (strInput.equals("y") || strInput.equals("Y"))
             {
                 String formattedDate = date.substring(4, 6) + "/" + date.substring(6) + "/" + date.substring(0, 4) + " 00:00:00";
@@ -261,7 +263,7 @@ public class EditCommission_Module
             for (CommissionSheet c: payPeriod)
                 {
                     //Print out the choice number
-                    System.out.println("(" + payPeriod.indexOf(c) + ")");
+                    System.out.print("(" + payPeriod.indexOf(c) + ") ");
                     for (CommissionRecord cR: c.commissionRecords)
                         System.out.println(cR.toString());
                 }
@@ -377,8 +379,8 @@ public class EditCommission_Module
                 }
         }
 
-        System.out.println("Total Gross Amount: " + totalGrossAmt);
-        System.out.println("Total Net Amount: " + totalNetAmt);
+        System.out.printf( "Total Gross Amount: $%1.2f\n", totalGrossAmt);
+        System.out.printf( "Total Net Amount:   $%1.2f\n", totalNetAmt);
 
         //Wait for user input
         System.out.print("Press enter to continue...");
@@ -395,6 +397,7 @@ public class EditCommission_Module
         Scanner input/* = new Scanner(System.in)*/;
         int inInt = -99999;
 
+        //Loop until the user inputs an int
         do 
         {
             input = new Scanner(System.in);
@@ -417,6 +420,7 @@ public class EditCommission_Module
         Scanner input/* = new Scanner(System.in)*/;
         float inFlt = -99999.99f;
 
+        //Loop until the user inputs a float
         do
         {
             input = new Scanner(System.in);

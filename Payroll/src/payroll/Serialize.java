@@ -23,7 +23,7 @@ public class Serialize {
      */
     public static void SaveSettings()
     {
-        //TODO - Add settings menu to program and save them here
+        //Does nothing.
         
         //Set the settings directory
         File dir = new File("Settings");

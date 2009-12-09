@@ -137,8 +137,8 @@ public class ViewCommission_Module
                 }
         }
 
-        System.out.println("Total Gross Amount: " + totalGrossAmt);
-        System.out.println("Total Net Amount: " + totalNetAmt);
+        System.out.printf( "Total Gross Amount: $%1.2f\n", totalGrossAmt);
+        System.out.printf( "Total Net Amount:   $%1.2f\n", totalNetAmt);
 
         //Wait for user input
         System.out.print("Press enter to continue...");
