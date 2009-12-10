@@ -166,7 +166,7 @@ public class TimeClock_Module
         //The actual calendar day of the first pay period day
         GregorianCalendar firstPayPeriodDate = new GregorianCalendar();
 
-        if (Calendar.getInstance().get(Calendar.DAY_OF_MONTH) > 1
+        if (Calendar.getInstance().get(Calendar.DAY_OF_MONTH) >= 1
                 && Calendar.getInstance().get(Calendar.DAY_OF_MONTH) <= 15)
             firstPayPeriodDay = 1;
         else
@@ -197,27 +197,18 @@ public class TimeClock_Module
         //Sets up the list of days in the pay period and formats the numbers accordingly
         for (int i = 0; i < datesToGrab.length; i++)
         {
-            //If the month and day are less than 10 (so we can add a 0 in the front)
-            if (Calendar.getInstance().get(Calendar.MONTH) + 1 < 10
-                && Calendar.getInstance().get(Calendar.DAY_OF_MONTH) < 10)
-                datesToGrab[i] = Integer.toString(Calendar.getInstance().get(Calendar.YEAR))
-                                + "0" + Integer.toString(Calendar.getInstance().get(Calendar.MONTH) + 1)
-                                + "0" + Integer.toString((Calendar.getInstance().get(Calendar.DAY_OF_MONTH) - i));
-            //If just the month is less than 10 (so we can add a 0 in the front)
-            else if (Calendar.getInstance().get(Calendar.MONTH) + 1 < 10)
-                datesToGrab[i] = Integer.toString(Calendar.getInstance().get(Calendar.YEAR))
-                                + "0" + Integer.toString(Calendar.getInstance().get(Calendar.MONTH) + 1)
-                                + Integer.toString((Calendar.getInstance().get(Calendar.DAY_OF_MONTH) - i));
-            //If just the day is less than 10 (so we can add a 0 in the front)
-            else if (Calendar.getInstance().get(Calendar.DAY_OF_MONTH) < 10)
-                datesToGrab[i] = Integer.toString(Calendar.getInstance().get(Calendar.YEAR))
-                                + Integer.toString(Calendar.getInstance().get(Calendar.MONTH) + 1)
-                                + "0" + Integer.toString((Calendar.getInstance().get(Calendar.DAY_OF_MONTH) - i));
-            //If the month and day are greater than 10
-            else
-                datesToGrab[i] = Integer.toString(Calendar.getInstance().get(Calendar.YEAR))
-                                + Integer.toString(Calendar.getInstance().get(Calendar.MONTH) + 1)
-                                + Integer.toString((Calendar.getInstance().get(Calendar.DAY_OF_MONTH) - i));
+            //Add the year
+            datesToGrab[i] = Integer.toString(Calendar.getInstance().get(Calendar.YEAR));
+
+            //If the month is less than 10, add a "0"
+            if (Calendar.getInstance().get(Calendar.MONTH) + 1 < 10)
+                datesToGrab[i] = datesToGrab[i].concat("0");
+            datesToGrab[i] = datesToGrab[i].concat(Integer.toString(Calendar.getInstance().get(Calendar.MONTH) + 1));
+
+            //If the day is less than 10, add a "0"
+            if (Calendar.getInstance().get(Calendar.DAY_OF_MONTH) - i < 10)
+                datesToGrab[i] = datesToGrab[i].concat("0");
+            datesToGrab[i] = datesToGrab[i].concat(Integer.toString(Calendar.getInstance().get(Calendar.DAY_OF_MONTH) - i));
         }
 
         //Loop through the list of dates
@@ -225,6 +216,7 @@ public class TimeClock_Module
         {
             File fullpath = new File(directory + datesToGrab[i] + ".xml");
 
+            System.out.println("Path: " + directory + datesToGrab[i] + ".xml");
             //If the given file exists in the database, aka if there is a time sheet for that day
             if (fullpath.exists())
             {
@@ -232,7 +224,7 @@ public class TimeClock_Module
                 TimeSheet t = (TimeSheet) Serialize.LoadFromXML(directory, datesToGrab[i] + ".xml");
                 //Add it to the payPeriod list
                 payPeriod.add( t );
-                //System.out.println("Found at Path: " + directory + datesToGrab[i] + ".xml");
+                System.out.println("Found at Path: " + directory + datesToGrab[i] + ".xml");
             }
         }
 
