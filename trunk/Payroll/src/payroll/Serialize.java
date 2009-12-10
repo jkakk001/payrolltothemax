@@ -19,17 +19,6 @@ public class Serialize {
     }
 
     /**
-     * Used for saving any application settings.
-     */
-    public static void SaveSettings()
-    {
-        //Does nothing.
-        
-        //Set the settings directory
-        File dir = new File("Settings");
-    }
-
-    /**
      * Loads the employees from the database folder
      * and throws them in Globals.Employees.
      */

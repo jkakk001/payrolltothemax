@@ -8,14 +8,10 @@ import java.io.Serializable;
  */
 public class CommissionRecord implements Serializable
 {
-    //Holds the time that it was entered.
-    private String timeEntered;
-    //Holds the date of the sale
-    private String date;
-    //The dollar amount of the sale.
-    private float amount;
-    //The commission rate at the time of sale.
-    private float rate;
+    private String timeEntered;  //Holds the time that it was entered.
+    private String date;         //Holds the date of the sale
+    private float amount;        //The dollar amount of the sale.
+    private float rate;          //The commission rate at the time of sale.
 
     //Gets and Sets
     public String getTimeEntered()
@@ -77,6 +73,7 @@ public class CommissionRecord implements Serializable
      * Prints out the commission info
      * @return  A string of all the commission record's info.
      */
+    @Override
     public String toString()
     {
         return date.substring(0, 10) + " - Sale Amount: " + amount + " (" + (amount*.06) + ")"

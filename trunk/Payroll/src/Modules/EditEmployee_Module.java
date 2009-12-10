@@ -9,8 +9,12 @@ import java.util.Scanner;
  */
 public class EditEmployee_Module
 {
-    Employee temporaryEmployee; //Holds the data that will be changed
+    Employee temporaryEmployee;       //Holds the data that will be changed
 
+    /**
+     * The main EditEmployee loop
+     * @return  true to keep looping
+     */
     public boolean Update()
     {
         Scanner input = new Scanner(System.in);         //Gets integer input
@@ -133,6 +137,7 @@ public class EditEmployee_Module
                 System.out.println("Would you like to save the changes you have made? (y/n)");
                 System.out.print("Choice: ");
                 stringChoice = stringInput.next();
+                //If the input isn't yes or no
                 if (!stringChoice.equals("y") && !stringChoice.equals("Y")
                     && !stringChoice.equals("n") && !stringChoice.equals("N"))
                     System.out.println("Invalid choice.");
@@ -175,8 +180,8 @@ public class EditEmployee_Module
     }
 
     /**
-     * Gets user input and returns it
-     * @return
+     * Gets user input
+     * @return  the replacement object
      */
     Object GetReplacement()
     {

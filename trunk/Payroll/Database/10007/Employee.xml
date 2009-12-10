@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_17" class="java.beans.XMLDecoder"> 
+ <object class="payroll.Employee_Salary"> 
+  <void property="address1"> 
+   <string>Somewhere</string> 
+  </void> 
+  <void property="city"> 
+   <string>Salt Lake City</string> 
+  </void> 
+  <void property="employeeID"> 
+   <int>10007</int> 
+  </void> 
+  <void property="firstName"> 
+   <string>Samuel</string> 
+  </void> 
+  <void property="isAdmin"> 
+   <boolean>false</boolean> 
+  </void> 
+  <void property="lastName"> 
+   <string>Louis</string> 
+  </void> 
+  <void property="password"> 
+   <string>password</string> 
+  </void> 
+  <void property="rate"> 
+   <float>600.0</float> 
+  </void> 
+  <void property="state"> 
+   <string>UT</string> 
+  </void> 
+  <void property="zip"> 
+   <int>84111</int> 
+  </void> 
+ </object> 
+</java> 

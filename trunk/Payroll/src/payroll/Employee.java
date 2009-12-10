@@ -138,7 +138,7 @@ public class Employee implements Serializable
         password = value;
     }
 
-     /**
+    /**
      *  Default Constructor
      */
     public Employee()
@@ -146,13 +146,13 @@ public class Employee implements Serializable
 
     }
 
-     /**
+    /**
      *  Used for creating an example or blank employee
      *  @param Empty     If false, a John Doe employee is created
      */
     public Employee(boolean Empty)
     {
-        int tempID = 10000;
+        int tempID = 10000;             //ID number that will be tested
         boolean okayID = false;         //True if the ID we have is available
         boolean isDuplicate = false;    //True if we find a duplicate ID
 
@@ -175,6 +175,7 @@ public class Employee implements Serializable
                 okayID = true;
         }
 
+        //Set the employee ID to the available one
         employeeID = tempID;
 
         if (Empty == false)

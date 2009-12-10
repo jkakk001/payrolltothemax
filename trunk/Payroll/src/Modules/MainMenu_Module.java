@@ -21,18 +21,20 @@ public class MainMenu_Module {
         Scanner in = new Scanner(System.in);
 
         System.out.println(Globals.getDateTime(false) + "\n");
-
         System.out.println("**MAIN MENU**\n");
 
         //Print the menu options to the screen
         System.out.println("Please choose an option from below: ");
+
         if (Globals.currentUser instanceof Employee_Hourly)
             System.out.println("(1)  - Clock");
         else if (Globals.currentUser instanceof Employee_Commission)
             System.out.println("(1)  - View Commission");
+
         //Shows the administrator menu option if the user has admin rights
         if (Globals.currentUser.getIsAdmin())
             System.out.println("(2)  - Administrator Menu");
+        
         System.out.println("(99) - Quit");
         System.out.print("Choice: ");
         if (in.hasNextInt())
@@ -45,11 +47,13 @@ public class MainMenu_Module {
 
             //Clock in and out, view timesheet etc.
             case 1:
+                //If the user is an hourly employee
                 if (Globals.currentUser instanceof Employee_Hourly)
                 {
                     Globals.currentState = Globals.State.TimeClock;
                     return false;
                 }
+                //If the user is a commission based employee
                 else if (Globals.currentUser instanceof Employee_Commission)
                 {
                     Globals.currentState = Globals.State.ViewCommission;
@@ -63,6 +67,7 @@ public class MainMenu_Module {
                     Globals.currentState = Globals.State.AdminMenu;
                     return false;
                 }
+                //Reject non-admin users
                 else
                 {
                     System.out.println("You do not have administrative access.");

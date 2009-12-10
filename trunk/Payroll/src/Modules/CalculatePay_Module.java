@@ -10,8 +10,8 @@ import java.io.*;
  */
 public class CalculatePay_Module
 {
-    float grossPay;
-    float netPay;
+    float grossPay;     //The temporary gross pay
+    float netPay;       //The temporary net pay
 
     /**
      * The Calculate Pay main loop
@@ -71,12 +71,12 @@ public class CalculatePay_Module
      */
     void PreparePayChecks()
     {
-        //Employee count
-        int count = 0;
+        int count = 0;  //Employee count
 
         //Company totals
         float totalGross = 0;
         float totalNet = 0;
+        
         for (Employee emp: Globals.Employees)
         {
             PreparePayChecks(emp.getEmployeeID(), false);
@@ -100,14 +100,17 @@ public class CalculatePay_Module
     boolean PreparePayChecks(int empID, boolean details)
     {
         File f = new File("Database\\" + Integer.toString(empID) + "\\");
+
+        //If the employee folder exists
         if (f.exists())
         {
+            //Calculate the pay
             for (Employee e: Globals.Employees)
                 if (e.getEmployeeID() == empID)  CalculatePay(e, details);
 
             return true;
         }
-        else
+        else    //Employee folder does not exist
         {
             System.out.println("Cannot find employee. " 
                               + "Make sure you entered the ID correctly");
@@ -120,22 +123,19 @@ public class CalculatePay_Module
         grossPay = 0;
         netPay = 0;
 
+        //If the employee is commission based
         if (emp instanceof Employee_Commission)
         {
             List<CommissionSheet> payPeriod = LoadCommissionPayPeriod(emp.getEmployeeID());
 
             //Go through the pay period and calculate the sales earnings
             if (payPeriod.size() > 0)
-            {
                 for (CommissionSheet c: payPeriod)
-                    {
                         for (CommissionRecord cR: c.commissionRecords)
-                        {
                             grossPay += cR.getAmount() * cR.getRate();
-                        }
-                    }
-            }
+                        
         }
+        //If the employee is hourly
         else if (emp instanceof Employee_Hourly)
         {
             List<TimeSheet> payPeriod = LoadHourlyPayPeriod(emp.getEmployeeID());
@@ -146,17 +146,21 @@ public class CalculatePay_Module
                 float totalHours = 0;
                 for (TimeSheet t: payPeriod)
                     {
-                        String inTime = "";
-                        String outTime = "";
-                        float difference = 0;
+                        String inTime = "";     //Time clocked in
+                        String outTime = "";    //Time clocked out
+                        float difference = 0;   //Used to get the hours worked
+                        
                         for (TimePunch tR: t.getTimePunches())
                         {
+                            //Clocked in
                             if (tR.getType() == 1)
                                 inTime = tR.getTime().substring(11);
+                            //Clocked out
                             else if (tR.getType() == 2)
                             {
                                 outTime = tR.getTime().substring(11);
-                                
+
+                                //Calculate the difference of hours, minutes, and seconds
                                 difference = Integer.parseInt(outTime.substring(0,2)) - Integer.parseInt(inTime.substring(0,2));
                                 difference += (Integer.parseInt(outTime.substring(3,5)) - Integer.parseInt(inTime.substring(3,5))) / 60f;
                                 difference += (Integer.parseInt(outTime.substring(6)) - Integer.parseInt(inTime.substring(6))) / 3600f;
@@ -169,10 +173,9 @@ public class CalculatePay_Module
                 grossPay = totalHours * emp.getRate();
             }
         }
+        //If the employee is salary based
         else if (emp instanceof Employee_Salary)
-        {
             grossPay = emp.getRate();
-        }
 
         netPay = grossPay;
 
@@ -236,9 +239,6 @@ public class CalculatePay_Module
         int monthToUse;
         int lastDay;
 
-        //The actual calendar day of the first pay period day
-        GregorianCalendar firstPayPeriodDate = new GregorianCalendar();
-
         //Get the previous pay period
         if (Calendar.getInstance().get(Calendar.DAY_OF_MONTH) >= 1
                 && Calendar.getInstance().get(Calendar.DAY_OF_MONTH) <= 15)
@@ -246,27 +246,28 @@ public class CalculatePay_Module
         else
             firstPayPeriodDay = 1;
 
+        //If this month is January, set the date stuff to last month (aka
+        //last year, December, the 16th-31st
         if (Calendar.MONTH == 0  && firstPayPeriodDay == 16)
         {
             yearToUse = Calendar.getInstance().get(Calendar.YEAR) - 1;
             monthToUse = 11;
             lastDay = 31;
         }
+        //Set the pay period to the 16th through the 31st of last month
         else if (firstPayPeriodDay == 16)
         {
             yearToUse = Calendar.getInstance().get(Calendar.YEAR);
             monthToUse = Calendar.getInstance().get(Calendar.MONTH)-1;
             lastDay = 31;
         }
+        //Set the pay period to the 1st through the 15th of this month
         else
         {
             yearToUse = Calendar.getInstance().get(Calendar.YEAR);
             monthToUse = Calendar.getInstance().get(Calendar.MONTH);
             lastDay = 15;
         }
-
-        //Set the firstPayPeriodDate object to the appropriate date
-        firstPayPeriodDate.set(yearToUse, monthToUse, firstPayPeriodDay);
 
         //An array that will hold all possible days in the pay period
         String[] datesToGrab = new String[(lastDay - firstPayPeriodDay) + 1];
@@ -334,9 +335,6 @@ public class CalculatePay_Module
         int monthToUse;
         int lastDay;
 
-        //The actual calendar day of the first pay period day
-        GregorianCalendar firstPayPeriodDate = new GregorianCalendar();
-
         //Get the previous pay period
         if (Calendar.getInstance().get(Calendar.DAY_OF_MONTH) >= 1
                 && Calendar.getInstance().get(Calendar.DAY_OF_MONTH) <= 15)
@@ -344,27 +342,28 @@ public class CalculatePay_Module
         else
             firstPayPeriodDay = 1;
 
+        //If this month is January, set the date stuff to last month (aka
+        //last year, December, the 16th-31st
         if (Calendar.MONTH == 0  && firstPayPeriodDay == 16)
         {
             yearToUse = Calendar.getInstance().get(Calendar.YEAR) - 1;
             monthToUse = 11;
             lastDay = 31;
         }
+        //Set the pay period to the 16th through the 31st of last month
         else if (firstPayPeriodDay == 16)
         {
             yearToUse = Calendar.getInstance().get(Calendar.YEAR);
             monthToUse = Calendar.getInstance().get(Calendar.MONTH)-1;
             lastDay = 31;
         }
+        //Set the pay period to the 1st through the 15th of this month
         else
         {
             yearToUse = Calendar.getInstance().get(Calendar.YEAR);
             monthToUse = Calendar.getInstance().get(Calendar.MONTH);
             lastDay = 15;
         }
-
-        //Set the firstPayPeriodDate object to the appropriate date
-        firstPayPeriodDate.set(yearToUse, monthToUse, firstPayPeriodDay);
 
         //An array that will hold all possible days in the pay period
         String[] datesToGrab = new String[(lastDay - firstPayPeriodDay) + 1];
@@ -421,7 +420,7 @@ public class CalculatePay_Module
      */
     int GetInt()
     {
-        Scanner input/* = new Scanner(System.in)*/;
+        Scanner input;
         int inInt = -99999;
 
         //Loop until the user inputs an int
@@ -436,20 +435,6 @@ public class CalculatePay_Module
         } while (inInt == -99999);
 
         return inInt;
-    }
-
-    /**
-     * Makes the program sleep for a specified amount of time.
-     * @param length amount of time in milliseconds
-     */
-    void Sleep(int length)
-    {
-        try
-        {
-            Thread.currentThread().sleep(length);
-        }
-        catch (Exception e)
-        {}
     }
 
     /**
@@ -468,6 +453,20 @@ public class CalculatePay_Module
 
         System.out.println("*DONE*\n");
         Sleep(1000);
+    }
+
+    /**
+     * Makes the program sleep for a specified amount of time.
+     * @param length amount of time in milliseconds
+     */
+    void Sleep(int length)
+    {
+        try
+        {
+            Thread.sleep(length);
+        }
+        catch (Exception e)
+        {}
     }
 
 }
