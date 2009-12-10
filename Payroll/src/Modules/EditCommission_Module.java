@@ -45,6 +45,7 @@ public class EditCommission_Module
         //Print the menu
         PrintMenuChoices();
         System.out.print("Choice: ");
+
         //Make sure input is an int to prevent exceptions
         if (in.hasNextInt())
             menuChoice = in.nextInt();
@@ -56,12 +57,8 @@ public class EditCommission_Module
             case 1:
                 CreateCommissionRecord();
                 break;
-            //Delete a Commission Record
-            case 2:
-                DeleteCommissionRecord();
-                break;
             //View Pay Period
-            case 3:
+            case 2:
                 ViewPayPeriod();
                 break;
             //Previous Menu
@@ -82,8 +79,7 @@ public class EditCommission_Module
     void PrintMenuChoices()
     {
         System.out.println("(1)  - Create Commission Record");
-        System.out.println("(2)  - Delete Commission Record");
-        System.out.println("(3)  - View Pay Period Information");
+        System.out.println("(2)  - View Pay Period Information");
         System.out.println("(99) - Back to Main Menu");
     }
 
@@ -207,26 +203,6 @@ public class EditCommission_Module
         }
     }
 
-
-    /**
-     * Allows the Admin to delete a commission record
-     */
-    void DeleteCommissionRecord()
-    {
-        //TODO
-        LoadPayPeriod();
-        if (payPeriod.size() > 0)
-        {
-            for (CommissionSheet c: payPeriod)
-                {
-                    //Print out the choice number
-                    System.out.print("(" + payPeriod.indexOf(c) + ") ");
-                    for (CommissionRecord cR: c.commissionRecords)
-                        System.out.println(cR.toString());
-                }
-        }
-    }
-
     /**
      * Loads the employees pay period information
      */
@@ -251,7 +227,7 @@ public class EditCommission_Module
                                Calendar.getInstance().get(Calendar.MONTH),
                                firstPayPeriodDay);
 
-        //Testing stuff
+        //Display pay period info
         System.out.println("Today's date: " + Globals.getDateTime(true));
         System.out.print("Pay Period Starting date: " + firstPayPeriodDate.get(Calendar.YEAR) + "/");
         if ( (firstPayPeriodDate.get(Calendar.MONTH)+1) < 10)
@@ -261,8 +237,6 @@ public class EditCommission_Module
             System.out.print("0");
         System.out.println(firstPayPeriodDate.get(Calendar.DATE));
 
-        //System.out.println("Difference between today and first pay period day: "
-        //                  + (Calendar.getInstance().get(Calendar.DAY_OF_MONTH) - firstPayPeriodDay) );
 
         //An array that will hold all possible days in the pay period
         String[] datesToGrab = new String[(Calendar.getInstance().get(Calendar.DAY_OF_MONTH) - firstPayPeriodDay)+1];
@@ -291,8 +265,7 @@ public class EditCommission_Module
                 datesToGrab[i] = Integer.toString(Calendar.getInstance().get(Calendar.YEAR))
                                 + Integer.toString(Calendar.getInstance().get(Calendar.MONTH) + 1)
                                 + Integer.toString((Calendar.getInstance().get(Calendar.DAY_OF_MONTH) - i));
-            ////Print out for testing purposes
-            //System.out.println(datesToGrab[i]);
+
         }
 
         //Loop through the list of dates
@@ -395,6 +368,7 @@ public class EditCommission_Module
                 date += "0";
             date += Integer.toString(intInput);
 
+            //Confirm
             System.out.println("\nEntered date: " + date.substring(4, 6) + "/" + date.substring(6) + "/" + date.substring(0, 4));
             System.out.println("Is this correct?");
             strInput = GetString();
@@ -408,7 +382,7 @@ public class EditCommission_Module
      */
     int GetInt()
     {
-        Scanner input/* = new Scanner(System.in)*/;
+        Scanner input;
         int inInt = -99999;
 
         //Loop until the user inputs an int
@@ -431,7 +405,7 @@ public class EditCommission_Module
      */
     float GetFloat()
     {
-        Scanner input/* = new Scanner(System.in)*/;
+        Scanner input;
         float inFlt = -99999.99f;
 
         //Loop until the user inputs a float

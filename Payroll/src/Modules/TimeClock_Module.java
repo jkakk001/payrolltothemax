@@ -28,7 +28,6 @@ public class TimeClock_Module
         Scanner in = new Scanner(System.in);
 
         System.out.println(Globals.getDateTime(false) + "\n");
-
         System.out.println("**TIME CLOCK**\n");
         
         //Display the time sheet for today
@@ -44,6 +43,7 @@ public class TimeClock_Module
         //Print the menu
         PrintMenuChoices();
         System.out.print("Choice: ");
+
         //Make sure input is an int to prevent exceptions
         if (in.hasNextInt())
             menuChoice = in.nextInt();
@@ -112,7 +112,6 @@ public class TimeClock_Module
     private void ClockIn()
     {
         //Check to make sure you haven't already clocked in
-
         if (timeSheet.getTimePunches().size() == 0 || timeSheet.getTimePunches().get(timeSheet.getTimePunches().size()-1).getType() != 1)
         {
             timeSheet.getTimePunches().add(new TimePunch(1));
@@ -178,18 +177,19 @@ public class TimeClock_Module
                                Calendar.getInstance().get(Calendar.MONTH),
                                firstPayPeriodDay);
 
-        //Testing stuff
+        //Print pay period info
         System.out.println("Today's date: " + Globals.getDateTime(true));
         System.out.print("Pay Period Starting date: " + firstPayPeriodDate.get(Calendar.YEAR) + "/");
+
+        //Add a 0 to the month if less than 0, print
         if ( (firstPayPeriodDate.get(Calendar.MONTH)+1) < 10)
             System.out.print("0");
         System.out.print( (firstPayPeriodDate.get(Calendar.MONTH)+1) + "/");
+
+        //Add a 0 to the day if less than 0, print
         if ( (firstPayPeriodDate.get(Calendar.DATE)) < 10)
             System.out.print("0");
         System.out.println(firstPayPeriodDate.get(Calendar.DATE));
-        
-        //System.out.println("Difference between today and first pay period day: "
-        //                  + (Calendar.getInstance().get(Calendar.DAY_OF_MONTH) - firstPayPeriodDay) );
 
         //An array that will hold all possible days in the pay period
         String[] datesToGrab = new String[(Calendar.getInstance().get(Calendar.DAY_OF_MONTH) - firstPayPeriodDay)+1];
@@ -218,8 +218,6 @@ public class TimeClock_Module
                 datesToGrab[i] = Integer.toString(Calendar.getInstance().get(Calendar.YEAR))
                                 + Integer.toString(Calendar.getInstance().get(Calendar.MONTH) + 1)
                                 + Integer.toString((Calendar.getInstance().get(Calendar.DAY_OF_MONTH) - i));
-            ////Print out for testing purposes
-            //System.out.println(datesToGrab[i]);
         }
 
         //Loop through the list of dates
@@ -244,23 +242,29 @@ public class TimeClock_Module
         float totalHours = 0;
         for (TimeSheet t: payPeriod)
         {
-            String inTime = "";
-            String outTime = "";
-            float difference = 0;
+            String inTime = "";     //Time clocked in
+            String outTime = "";    //Time clocked out
+            float difference = 0;   //Used to get the hours worked
+            
             for (TimePunch tP: t.getTimePunches())
             {
+                //Clocked in
                 if (tP.getType() == 1)
                     inTime = tP.getTime().substring(11);
+                //Clocked out
                 else if (tP.getType() == 2)
                 {
                     outTime = tP.getTime().substring(11);
 
+                    //Calculate the difference of hours, minutes, and seconds
                     difference = Integer.parseInt(outTime.substring(0,2)) - Integer.parseInt(inTime.substring(0,2));
                     difference += (Integer.parseInt(outTime.substring(3,5)) - Integer.parseInt(inTime.substring(3,5))) / 60f;
                     difference += (Integer.parseInt(outTime.substring(6)) - Integer.parseInt(inTime.substring(6))) / 3600f;
 
+                    //Add tp the day's total
                     totalHours += difference;
                 }
+                //Print the clock in/out information
                 System.out.println(tP.toString());
 
             }

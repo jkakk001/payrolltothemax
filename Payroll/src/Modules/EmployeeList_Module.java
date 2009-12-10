@@ -58,6 +58,7 @@ public class EmployeeList_Module {
         else if (choice == 3)
             Collections.sort(employeeList, FIRSTNAME_ORDER);
 
+        //If the choice was valid
         if (choice >= 1 && choice <=3)
         {
             //Go through the list of employees and print their name and ID
@@ -91,6 +92,7 @@ public class EmployeeList_Module {
                 return false;
             //Any other number
             default:
+                //If the choice exists
                 if (choice <= employeeList.size())
                 {
                     Globals.currentEmployee = employeeList.get(choice - 1);

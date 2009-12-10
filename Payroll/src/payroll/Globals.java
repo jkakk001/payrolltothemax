@@ -3,6 +3,7 @@ package payroll;
 import java.util.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
 /**
  *  This class contains all the global variables (reusable/important for all
  *  to see) and methods for the application.
@@ -68,4 +69,5 @@ public class Globals {
         Date date = new Date();
         return dateFormat.format(date);
     }
+
 }

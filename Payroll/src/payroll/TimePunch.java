@@ -9,10 +9,8 @@ import java.io.Serializable;
  */
 public class TimePunch implements Serializable
 {
-    //Holds the time.
-    private String time;
-    //The punch type.  1-In, 2-Out
-    private int type;
+    private String time;    //Holds the time.
+    private int type;       //The punch type.  1-In, 2-Out
 
     //Gets and Sets
     public String getTime()
@@ -40,6 +38,7 @@ public class TimePunch implements Serializable
         type = 0;
         time = "";
     }
+    
     /**
      *  Overloaded Constructor
      *  @param punchType     1-In, 2-Out
@@ -54,6 +53,7 @@ public class TimePunch implements Serializable
      * Prints out the time punch info
      * @return  The type of punch and the associated time
      */
+    @Override
     public String toString()
     {
         if (type == 1)

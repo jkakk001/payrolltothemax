@@ -38,6 +38,7 @@ public class ViewCommission_Module
 
         //Used to figure out which day of the month is the first pay period day.
         int firstPayPeriodDay;
+        
         //The actual calendar day of the first pay period day
         GregorianCalendar firstPayPeriodDate = new GregorianCalendar();
 
@@ -55,15 +56,14 @@ public class ViewCommission_Module
         //Testing stuff
         System.out.println("Today's date: " + Globals.getDateTime(true));
         System.out.print("Pay Period Starting date: " + firstPayPeriodDate.get(Calendar.YEAR) + "/");
+
         if ( (firstPayPeriodDate.get(Calendar.MONTH)+1) < 10)
             System.out.print("0");
         System.out.print( (firstPayPeriodDate.get(Calendar.MONTH)+1) + "/");
+
         if ( (firstPayPeriodDate.get(Calendar.DATE)) < 10)
             System.out.print("0");
         System.out.println(firstPayPeriodDate.get(Calendar.DATE));
-
-        //System.out.println("Difference between today and first pay period day: "
-        //                  + (Calendar.getInstance().get(Calendar.DAY_OF_MONTH) - firstPayPeriodDay) );
 
         //An array that will hold all possible days in the pay period
         String[] datesToGrab = new String[(Calendar.getInstance().get(Calendar.DAY_OF_MONTH) - firstPayPeriodDay)+1];
@@ -92,8 +92,6 @@ public class ViewCommission_Module
                 datesToGrab[i] = Integer.toString(Calendar.getInstance().get(Calendar.YEAR))
                                 + Integer.toString(Calendar.getInstance().get(Calendar.MONTH) + 1)
                                 + Integer.toString((Calendar.getInstance().get(Calendar.DAY_OF_MONTH) - i));
-            ////Print out for testing purposes
-            //System.out.println(datesToGrab[i]);
         }
 
         //Loop through the list of dates
@@ -140,7 +138,7 @@ public class ViewCommission_Module
         System.out.printf( "Total Sales Amount: $%1.2f\n", totalSales);
         System.out.printf( "Total Earnings:     $%1.2f\n", totalEarnings);
 
-        //Wait for user input
+        //Wait for user enter key
         System.out.print("Press enter to continue...");
         Scanner sc = new Scanner(System.in);
         sc.nextLine();

@@ -25,6 +25,7 @@ public class Login_Module {
 
         //Prompt for ID number
         System.out.print("Please enter your employee ID number: ");
+        
         //Make sure it's an Integer, otherwise it throws an exception
         if (inputID.hasNextInt())
             loginID = inputID.nextInt();

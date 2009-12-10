@@ -51,6 +51,7 @@ public class SelectEmployee_Module
                 case 3:
                     Globals.currentState = Globals.State.EmployeeList;
                     return false;
+                //Go back to the Admin Menu
                 case 99:
                     Globals.currentState = Globals.State.AdminMenu;
                     return false;
@@ -133,6 +134,7 @@ public class SelectEmployee_Module
                 if (inputInt.hasNextInt())
                     choice = inputInt.nextInt();
 
+                //The choice is valid
                 if (choice <= possibleMatches.size())
                 {
                     Globals.currentEmployee = possibleMatches.get(choice - 1);
@@ -162,8 +164,8 @@ public class SelectEmployee_Module
         Scanner inputInt = new Scanner(System.in);
         int employeeID = -1;
 
-        System.out.print("Please enter an employee ID number: ");
         //Grabs the user's input for the employee ID
+        System.out.print("Please enter an employee ID number: ");
         if (inputInt.hasNextInt())
             employeeID = inputInt.nextInt();
 
