@@ -275,26 +275,18 @@ public class CalculatePay_Module
         //Sets up the list of days in the pay period and formats the numbers accordingly
         for (int i = 0; i < datesToGrab.length; i++)
         {
-            //If the month and day are less than 10 (so we can add a 0 in the front)
-            if (monthToUse + 1 < 10 && lastDay < 10)
-                datesToGrab[i] = Integer.toString(yearToUse)
-                                + "0" + Integer.toString(monthToUse + 1)
-                                + "0" + Integer.toString(lastDay - i);
-            //If the month is less than 10 (so we can add a 0 in the front)
-            else if (monthToUse + 1 < 10)
-                datesToGrab[i] = Integer.toString(yearToUse)
-                                + "0" + Integer.toString(monthToUse + 1)
-                                + Integer.toString(lastDay - i);
-            //If just the day is less than 10 (so we can add a 0 in the front)
-            else if (lastDay < 10)
-                datesToGrab[i] = Integer.toString(yearToUse)
-                                + Integer.toString(monthToUse + 1)
-                                + "0" + Integer.toString(lastDay - i);
-            //If the month and day are greater than 10
-            else
-                datesToGrab[i] = Integer.toString(yearToUse)
-                                + Integer.toString(monthToUse + 1)
-                                + Integer.toString(lastDay - i);
+            //Add the year
+            datesToGrab[i] = Integer.toString(yearToUse);
+
+            //If the month is less than 10, add a "0"
+            if (monthToUse + 1 < 10)
+                datesToGrab[i] = datesToGrab[i].concat("0");
+            datesToGrab[i] = datesToGrab[i].concat(Integer.toString(monthToUse + 1));
+
+            //If the day is less than 10, add a "0"
+            if (lastDay - i < 10)
+                datesToGrab[i] = datesToGrab[i].concat("0");
+            datesToGrab[i] = datesToGrab[i].concat(Integer.toString(lastDay - i));
         }
 
         //Loop through the list of dates
@@ -371,27 +363,18 @@ public class CalculatePay_Module
         //Sets up the list of days in the pay period and formats the numbers accordingly
         for (int i = 0; i < datesToGrab.length; i++)
         {
-            //If the month and day are less than 10 (so we can add a 0 in the front)
-            if (monthToUse + 1 < 10 && lastDay < 10)
-                datesToGrab[i] = Integer.toString(yearToUse)
-                                + "0" + Integer.toString(monthToUse + 1)
-                                + "0" + Integer.toString(lastDay - i);
-            //If the month is less than 10 (so we can add a 0 in the front)
-            else if (monthToUse + 1 < 10)
-                datesToGrab[i] = Integer.toString(yearToUse)
-                                + "0" + Integer.toString(monthToUse + 1)
-                                + Integer.toString(lastDay - i);
-            //If just the day is less than 10 (so we can add a 0 in the front)
-            else if (lastDay < 10)
-                datesToGrab[i] = Integer.toString(yearToUse)
-                                + Integer.toString(monthToUse + 1)
-                                + "0" + Integer.toString(lastDay - i);
-            //If the month and day are greater than 10
-            else
-                datesToGrab[i] = Integer.toString(yearToUse)
-                                + Integer.toString(monthToUse + 1)
-                                + Integer.toString(lastDay - i);
+            //Add the year
+            datesToGrab[i] = Integer.toString(yearToUse);
 
+            //If the month is less than 10, add a "0"
+            if (monthToUse + 1 < 10)
+                datesToGrab[i] = datesToGrab[i].concat("0");
+            datesToGrab[i] = datesToGrab[i].concat(Integer.toString(monthToUse + 1));
+
+            //If the day is less than 10, add a "0"
+            if (lastDay - i < 10)
+                datesToGrab[i] = datesToGrab[i].concat("0");
+            datesToGrab[i] = datesToGrab[i].concat(Integer.toString(lastDay - i));
         }
 
         //Loop through the list of dates
