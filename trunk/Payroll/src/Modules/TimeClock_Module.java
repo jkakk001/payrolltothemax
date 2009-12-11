@@ -216,7 +216,6 @@ public class TimeClock_Module
         {
             File fullpath = new File(directory + datesToGrab[i] + ".xml");
 
-            System.out.println("Path: " + directory + datesToGrab[i] + ".xml");
             //If the given file exists in the database, aka if there is a time sheet for that day
             if (fullpath.exists())
             {
@@ -224,7 +223,6 @@ public class TimeClock_Module
                 TimeSheet t = (TimeSheet) Serialize.LoadFromXML(directory, datesToGrab[i] + ".xml");
                 //Add it to the payPeriod list
                 payPeriod.add( t );
-                System.out.println("Found at Path: " + directory + datesToGrab[i] + ".xml");
             }
         }
 
