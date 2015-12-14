@@ -1,0 +1,1 @@
+This is a simple program that will be able to perform the basic actions that a commercial payroll/timeclock application would do.  It is for learning purposes and not real world use.
